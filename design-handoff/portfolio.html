@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Press On Ventures · Portfolio</title>
+<link rel="stylesheet" href="styles/nightfall.css" />
+<style>
+  .pf-controls { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 36px 0 0; }
+  .pf-filters { display: flex; gap: 8px; }
+  .pf-filters button { border: 1px solid var(--border-on-dark-2); border-radius: var(--radius-full); padding: 10px 20px; font-size: .82rem; color: var(--fg-on-dark-2); transition: all .25s; display:flex; align-items:center; gap:8px; }
+  .pf-filters button:hover { color:#fff; border-color: var(--fg-on-dark-3); }
+  .pf-filters button.active { background: var(--povc-beige); color:#1c1c1c; border-color: var(--povc-beige); }
+  .pf-filters button .ct { font-size:.7rem; opacity:.6; }
+  .pf-count { font-size:.8rem; letter-spacing:.04em; color: var(--fg-on-dark-3); }
+
+  .pf-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border-on-dark-1); border:1px solid var(--border-on-dark-1); }
+  .pf-card { position: relative; background: var(--bg-inverse); padding: 38px 34px 34px; min-height: 300px; display: flex; flex-direction: column; overflow: hidden; transition: background .4s var(--ease-out); text-decoration:none; }
+  .pf-card:hover { background: #2f2f2f; }
+  .pc-cat { font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color: var(--fg-on-dark-3); display:flex; align-items:center; gap:8px; }
+  .pc-name { font-family: var(--font-heading); font-weight:800; font-size:1.85rem; letter-spacing:-.025em; color:#fff; margin-top: 18px; }
+  .pc-tag { font-size:.9rem; color: var(--fg-on-dark-2); margin-top: 8px; }
+  .pc-desc { font-size:.9rem; line-height:1.55; color: var(--fg-on-dark-2); font-weight:300; margin-top: 18px;
+    max-height: 0; opacity: 0; overflow:hidden; transition: max-height .5s var(--ease-out), opacity .4s, margin .4s; }
+  .pf-card:hover .pc-desc { max-height: 170px; opacity:1; }
+  .pc-foot { margin-top: auto; padding-top: 22px; display:flex; align-items:center; gap:8px; font-size:.78rem; letter-spacing:.04em; color: var(--povc-beige); opacity:0; transform: translateY(6px); transition: opacity .4s, transform .4s; }
+  .pf-card:hover .pc-foot { opacity:1; transform:none; }
+  .pc-foot svg { width:15px; height:15px; }
+  .pc-arrow { position:absolute; top:36px; right:30px; width:26px; height:26px; color: var(--fg-on-dark-3); transition: transform .4s var(--ease-out), color .3s; }
+  .pf-card:hover .pc-arrow { color: var(--povc-beige); transform: translate(3px,-3px); }
+  .pf-card.hide { display:none; }
+  @media (max-width: 900px){ .pf-grid{ grid-template-columns: repeat(2,1fr);} }
+  @media (max-width: 580px){ .pf-grid{ grid-template-columns: 1fr;} .pc-desc{ max-height:170px; opacity:1;} .pc-foot{ opacity:1; transform:none;} }
+</style>
+</head>
+<body>
+  <nav class="nf-nav" id="nf-nav"></nav>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="eyebrow reveal">The Portfolio</div>
+      <h1 class="reveal reveal-d1">Twelve teams, one conviction: press on.</h1>
+      <p class="lede reveal reveal-d2">We partner early, from pre-seed through Series A, with founders building across consumer health &amp; well-being and travel &amp; experiential. These are the companies we're proud to back.</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: clamp(30px,5vw,56px);">
+    <div class="container">
+      <div class="pf-controls reveal">
+        <div class="pf-filters" id="pfFilters">
+          <button class="active" data-cat="all">All <span class="ct" id="ct-all"></span></button>
+          <button data-cat="health">Health &amp; Well-Being <span class="ct" id="ct-health"></span></button>
+          <button data-cat="travel">Travel &amp; Experiential <span class="ct" id="ct-travel"></span></button>
+        </div>
+        <div class="pf-count" id="pfCount"></div>
+      </div>
+      <div class="pf-grid reveal" id="pfGrid"></div>
+    </div>
+  </section>
+
+  <footer class="nf-footer" id="nf-footer"></footer>
+
+  <script src="styles/povc-data.js"></script>
+  <script src="styles/nightfall-data.js"></script>
+  <script src="styles/nightfall.js"></script>
+  <script>
+    NF_renderChrome('portfolio');
+    var catLabel = { health:'Health & Well-Being', travel:'Travel & Experiential' };
+    var C = window.POVC_COMPANIES;
+    document.getElementById('pfGrid').innerHTML = C.map(function(c){
+      return '<a class="pf-card" href="company.html?c='+c.slug+'" data-cat="'+c.cat+'">'
+        + '<span class="pc-arrow">'+NF_ARROW_UP+'</span>'
+        + '<div class="pc-cat"><span class="cat-dot '+c.cat+'"></span>'+catLabel[c.cat]+'</div>'
+        + '<div class="pc-name">'+c.name+'</div><div class="pc-tag">'+c.tag+'</div>'
+        + '<div class="pc-desc">'+c.desc+'</div>'
+        + '<div class="pc-foot">View company '+NF_ARROW+'</div>'
+        + '</a>';
+    }).join('');
+    // counts
+    var nH = C.filter(function(c){return c.cat==='health';}).length;
+    var nT = C.filter(function(c){return c.cat==='travel';}).length;
+    document.getElementById('ct-all').textContent = C.length;
+    document.getElementById('ct-health').textContent = nH;
+    document.getElementById('ct-travel').textContent = nT;
+    function setCount(n){ document.getElementById('pfCount').textContent = 'Showing ' + n + ' of ' + C.length + ' companies'; }
+    setCount(C.length);
+    document.querySelectorAll('#pfFilters button').forEach(function(b){
+      b.addEventListener('click', function(){
+        document.querySelectorAll('#pfFilters button').forEach(function(x){x.classList.remove('active');});
+        b.classList.add('active');
+        var cat=b.dataset.cat, shown=0;
+        document.querySelectorAll('.pf-card').forEach(function(c){
+          var ok = (cat==='all'||c.dataset.cat===cat); c.classList.toggle('hide', !ok); if(ok) shown++;
+        });
+        setCount(shown);
+      });
+    });
+  </script>
+</body>
+</html>

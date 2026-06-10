@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Press On Ventures · Company</title>
+<link rel="stylesheet" href="styles/nightfall.css" />
+<style>
+  .crumb { display:flex; align-items:center; gap:9px; font-size:.82rem; color: var(--fg-on-dark-3); transition: color .25s; }
+  .crumb:hover { color:#fff; } .crumb svg { width:15px; height:15px; transform: rotate(180deg); }
+  .co-head { margin-top: 26px; display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+  .co-cat { font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color: var(--povc-beige); display:flex; align-items:center; gap:9px; }
+  .co-name { font-family: var(--font-heading); font-weight:800; letter-spacing:-.035em; font-size: clamp(2.6rem,6.5vw,5rem); line-height:.98; color:#fff; margin-top: 16px; }
+  .co-tag { font-size: clamp(1.05rem,1.6vw,1.3rem); color: var(--fg-on-dark-2); font-weight:300; margin-top: 14px; }
+
+  .co-hero-img { margin-top: 44px; width:100%; aspect-ratio: 16/7; border-radius: var(--radius-2xl); overflow:hidden; position:relative;
+    background: linear-gradient(135deg, #E0D8D1, #cdbfb3); display:flex; align-items:center; justify-content:center; }
+  .co-hero-img .mono { font-family: var(--font-heading); font-weight:800; font-size: clamp(4rem,12vw,9rem); color: rgba(41,41,41,.16); letter-spacing:-.04em; }
+  .co-hero-img .ph-label { position:absolute; bottom:18px; right:22px; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color: rgba(41,41,41,.4); }
+
+  .co-body { display: grid; grid-template-columns: 1fr 340px; gap: 64px; padding: clamp(56px,8vw,90px) 0; align-items: start; }
+  .co-main h2 { font-family: var(--font-heading); font-weight:700; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color: var(--povc-beige); margin: 0 0 16px; }
+  .co-main .lead { font-size: clamp(1.25rem,2vw,1.6rem); line-height:1.42; color:#fff; font-weight:300; letter-spacing:-.01em; }
+  .co-main .why { margin-top: 52px; }
+  .co-main .why p { font-size:1.12rem; line-height:1.66; color: var(--fg-on-dark-2); font-weight:300; max-width: 60ch; }
+
+  .co-side { position: sticky; top: 100px; border:1px solid var(--border-on-dark-1); border-radius: var(--radius-2xl); padding: 30px; background: rgba(255,255,255,.02); }
+  .co-side .row { padding: 18px 0; border-bottom: 1px solid var(--border-on-dark-1); }
+  .co-side .row:first-child { padding-top: 4px; } .co-side .row:last-child { border-bottom:0; padding-bottom: 4px; }
+  .co-side .k { font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color: var(--fg-on-dark-3); }
+  .co-side .v { font-family: var(--font-heading); font-weight:600; font-size:1.02rem; color:#fff; margin-top:7px; }
+  .co-side .founders a { display:flex; align-items:center; justify-content:space-between; gap:10px; color:#fff; font-family: var(--font-heading); font-weight:600; font-size:1rem; padding:7px 0; transition: color .25s; }
+  .co-side .founders a:hover { color: var(--povc-beige); } .co-side .founders a svg { width:14px; height:14px; color: var(--fg-on-dark-3); }
+  .co-side .visit { display:flex; align-items:center; justify-content:center; gap:9px; margin-top:24px; width:100%; }
+  @media (max-width: 880px){ .co-body { grid-template-columns: 1fr; gap: 40px; } .co-side { position: static; } }
+
+  /* press for company */
+  .co-press { border-top: 1px solid var(--border-on-dark-1); }
+  .pr-item { display:grid; grid-template-columns: 200px 1fr auto; gap:28px; align-items:center; padding:24px 6px; border-bottom:1px solid var(--border-on-dark-1); transition: padding .4s var(--ease-out), background .3s; }
+  .pr-item:hover { padding-left:16px; background: linear-gradient(90deg, rgba(255,255,255,.03), transparent 70%); }
+  .pr-pub { font-family: var(--font-heading); font-weight:700; color:#fff; font-size:1.02rem; }
+  .pr-date { font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color: var(--fg-on-dark-3); margin-top:4px; }
+  .pr-title { color: var(--fg-on-dark-2); font-weight:300; }
+  .pr-go { width:24px; height:24px; color: var(--fg-on-dark-3); } .pr-item:hover .pr-go { color: var(--povc-beige); }
+  @media (max-width:700px){ .pr-item{ grid-template-columns:1fr auto; } .pr-title{ display:none; } }
+
+  /* prev / next */
+  .co-nav { display:grid; grid-template-columns:1fr 1fr; gap:1px; background: var(--border-on-dark-1); border-top:1px solid var(--border-on-dark-1); border-bottom:1px solid var(--border-on-dark-1); }
+  .co-nav a { background: var(--bg-inverse); padding: 40px clamp(20px,4vw,56px); transition: background .35s; }
+  .co-nav a:hover { background:#2f2f2f; }
+  .co-nav .dir { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color: var(--fg-on-dark-3); }
+  .co-nav .nm { font-family: var(--font-heading); font-weight:800; font-size: clamp(1.4rem,2.6vw,2.1rem); color:#fff; margin-top:10px; letter-spacing:-.02em; }
+  .co-nav .next { text-align:right; }
+  .missing { padding: 200px 0; text-align:center; color: var(--fg-on-dark-2); }
+</style>
+</head>
+<body>
+  <nav class="nf-nav" id="nf-nav"></nav>
+  <main id="main"></main>
+  <footer class="nf-footer" id="nf-footer"></footer>
+
+  <script src="styles/povc-data.js"></script>
+  <script src="styles/nightfall-data.js"></script>
+  <script src="styles/nightfall.js"></script>
+  <script>
+    NF_renderChrome('portfolio');
+    var catLabel = { health:'Health & Well-Being', travel:'Travel & Experiential' };
+    var params = new URLSearchParams(location.search);
+    var slug = params.get('c') || (window.POVC_COMPANIES[0] && window.POVC_COMPANIES[0].slug);
+    var C = window.POVC_COMPANIES;
+    var idx = C.findIndex(function(c){ return c.slug === slug; });
+    var c = idx >= 0 ? C[idx] : null;
+    var main = document.getElementById('main');
+
+    if (!c) {
+      main.innerHTML = '<div class="container missing"><p>Company not found. <a href="portfolio.html" style="color:var(--povc-beige)">Back to portfolio →</a></p></div>';
+    } else {
+      document.title = 'Press On Ventures · ' + c.name;
+      var press = (window.POVC_PRESS_ITEMS||[]).filter(function(p){ return p.company === c.name; });
+      var prev = C[(idx - 1 + C.length) % C.length];
+      var next = C[(idx + 1) % C.length];
+      var mono = c.name.replace(/[^A-Za-z0-9]/g,'').slice(0,2).toUpperCase();
+
+      var foundersHtml = c.founders.map(function(f){
+        return '<a href="'+f.url+'" target="_blank" rel="noopener">'+f.name+' '+NF_ARROW_UP+'</a>';
+      }).join('');
+
+      var pressHtml = press.length ? ('<section class="section"><div class="container">'
+        + '<div class="sec-eyebrow reveal">In the press</div>'
+        + '<h2 class="sec-title reveal" style="margin-bottom:36px;">'+c.name+' in the news</h2>'
+        + '<div class="co-press reveal">' + press.map(function(p){
+            return '<a class="pr-item" href="'+p.url+'" target="_blank" rel="noopener">'
+              + '<div><div class="pr-pub">'+p.pub+'</div><div class="pr-date">'+p.date+'</div></div>'
+              + '<div class="pr-title">'+p.title+'</div>'
+              + '<span class="pr-go">'+NF_ARROW_UP+'</span></a>';
+          }).join('') + '</div></div></section>') : '';
+
+      main.innerHTML =
+        '<header class="page-hero" style="padding-bottom:0;">'
+        + '<div class="container">'
+        +   '<a class="crumb reveal" href="portfolio.html">'+NF_ARROW+' Portfolio</a>'
+        +   '<div class="co-head reveal reveal-d1"><div>'
+        +     '<div class="co-cat"><span class="cat-dot '+c.cat+'"></span>'+catLabel[c.cat]+'</div>'
+        +     '<div class="co-name">'+c.name+'</div>'
+        +     '<div class="co-tag">'+c.tag+'</div>'
+        +   '</div></div>'
+        +   '<div class="co-hero-img reveal reveal-d2"><span class="mono">'+mono+'</span><span class="ph-label">Company imagery placeholder</span></div>'
+        + '</div></header>'
+        + '<section class="container"><div class="co-body">'
+        +   '<div class="co-main">'
+        +     '<h2 class="reveal">Overview</h2>'
+        +     '<p class="lead reveal">'+c.desc+'</p>'
+        +     '<div class="why reveal"><h2>Why we partnered</h2><p>'+c.why+'</p></div>'
+        +   '</div>'
+        +   '<aside class="co-side reveal reveal-d1">'
+        +     '<div class="row"><div class="k">Category</div><div class="v">'+catLabel[c.cat]+'</div></div>'
+        +     (c.stage ? '<div class="row"><div class="k">Stage at entry</div><div class="v">'+c.stage+'</div></div>' : '')
+        +     '<div class="row"><div class="k">Founder'+(c.founders.length>1?'s':'')+'</div><div class="founders">'+foundersHtml+'</div></div>'
+        +     (c.website ? '<a class="btn-beige visit" href="'+c.website+'" target="_blank" rel="noopener">Visit website '+NF_ARROW_UP+'</a>' : '')
+        +   '</aside>'
+        + '</div></section>'
+        + pressHtml
+        + '<nav class="co-nav reveal">'
+        +   '<a href="company.html?c='+prev.slug+'"><div class="dir">Previous</div><div class="nm">'+prev.name+'</div></a>'
+        +   '<a class="next" href="company.html?c='+next.slug+'"><div class="dir">Next</div><div class="nm">'+next.name+'</div></a>'
+        + '</nav>';
+    }
+
+    // re-run reveal now that content is injected
+    if (window.POVC_initReveal) window.POVC_initReveal();
+  </script>
+</body>
+</html>

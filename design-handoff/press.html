@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Press On Ventures · Press</title>
+<link rel="stylesheet" href="styles/nightfall.css" />
+<style>
+  .feat { border-top:1px solid var(--border-on-dark-1); border-bottom:1px solid var(--border-on-dark-1); padding: 40px 0; }
+  .feat .lbl { text-align:center; font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color: var(--fg-on-dark-3); margin-bottom: 28px; }
+  .feat .names { display:flex; flex-wrap:wrap; justify-content:center; gap: 18px 44px; }
+  .feat .names span { font-family: var(--font-heading); font-weight:700; font-size: clamp(1.1rem,2vw,1.7rem); color: var(--fg-on-dark-3); transition: color .3s; }
+  .feat .names span:hover { color:#fff; }
+
+  .pr-filters { display:flex; gap:8px; flex-wrap:wrap; margin: 0 0 8px; }
+  .pr-filters button { border:1px solid var(--border-on-dark-2); border-radius: var(--radius-full); padding:9px 17px; font-size:.78rem; color: var(--fg-on-dark-2); transition: all .25s; }
+  .pr-filters button:hover { color:#fff; border-color: var(--fg-on-dark-3); }
+  .pr-filters button.active { background: var(--povc-beige); color:#1c1c1c; border-color: var(--povc-beige); }
+
+  .pr-list { margin-top: 44px; border-top:1px solid var(--border-on-dark-1); }
+  .pr-item { display:grid; grid-template-columns: 220px 1fr 200px 30px; gap: 28px; align-items:center; padding: 28px 8px; border-bottom:1px solid var(--border-on-dark-1); transition: padding .4s var(--ease-out), background .3s; }
+  .pr-item:hover { padding-left:18px; background: linear-gradient(90deg, rgba(255,255,255,.03), transparent 72%); }
+  .pr-pub { font-family: var(--font-heading); font-weight:700; font-size:1.1rem; color:#fff; }
+  .pr-date { font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color: var(--fg-on-dark-3); margin-top:5px; }
+  .pr-title { color: var(--fg-on-dark-2); font-weight:300; font-size:1.02rem; line-height:1.4; }
+  .pr-co { justify-self:start; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color: var(--povc-beige); border:1px solid var(--border-on-dark-2); border-radius: var(--radius-full); padding:6px 13px; white-space:nowrap; }
+  .pr-go { width:24px; height:24px; color: var(--fg-on-dark-3); justify-self:end; } .pr-item:hover .pr-go { color: var(--povc-beige); }
+  .pr-item.hide { display:none; }
+  @media (max-width: 860px){ .pr-item{ grid-template-columns: 1fr auto; } .pr-title, .pr-co{ display:none; } }
+</style>
+</head>
+<body>
+  <nav class="nf-nav" id="nf-nav"></nav>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="eyebrow reveal">Press &amp; Recognition</div>
+      <h1 class="reveal reveal-d1">Our portfolio, in the headlines.</h1>
+      <p class="lede reveal reveal-d2">From robotic manicures rolling out in Ulta to canned margaritas making the Wall Street Journal, our founders are building companies the world is paying attention to.</p>
+    </div>
+  </header>
+
+  <section class="feat reveal">
+    <div class="container">
+      <div class="lbl">Portfolio featured in</div>
+      <div class="names" id="featNames"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec-eyebrow reveal">Coverage</div>
+      <h2 class="sec-title reveal" style="margin-bottom:36px;">Selected press.</h2>
+      <div class="pr-filters reveal" id="prFilters"></div>
+      <div class="pr-list reveal" id="prList"></div>
+    </div>
+  </section>
+
+  <footer class="nf-footer" id="nf-footer"></footer>
+
+  <script src="styles/povc-data.js"></script>
+  <script src="styles/nightfall-data.js"></script>
+  <script src="styles/nightfall.js"></script>
+  <script>
+    NF_renderChrome('press');
+
+    document.getElementById('featNames').innerHTML = window.POVC_PRESS.map(function(p){ return '<span>'+p+'</span>'; }).join('');
+
+    var items = window.POVC_PRESS_ITEMS || [];
+    document.getElementById('prList').innerHTML = items.map(function(p){
+      return '<a class="pr-item" href="'+p.url+'" target="_blank" rel="noopener" data-co="'+p.company+'">'
+        + '<div><div class="pr-pub">'+p.pub+'</div><div class="pr-date">'+p.date+'</div></div>'
+        + '<div class="pr-title">'+p.title+'</div>'
+        + '<span class="pr-co">'+p.company+'</span>'
+        + '<span class="pr-go">'+NF_ARROW_UP+'</span></a>';
+    }).join('');
+
+    // company filters (only companies that have coverage)
+    var cos = []; items.forEach(function(p){ if(cos.indexOf(p.company)<0) cos.push(p.company); });
+    cos.sort();
+    var fil = document.getElementById('prFilters');
+    fil.innerHTML = '<button class="active" data-co="all">All coverage</button>' + cos.map(function(co){
+      return '<button data-co="'+co+'">'+co+'</button>';
+    }).join('');
+    fil.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        fil.querySelectorAll('button').forEach(function(x){x.classList.remove('active');});
+        b.classList.add('active');
+        var co=b.dataset.co;
+        document.querySelectorAll('.pr-item').forEach(function(it){ it.classList.toggle('hide', !(co==='all'||it.dataset.co===co)); });
+      });
+    });
+
+    if (window.POVC_initReveal) window.POVC_initReveal();
+  </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Press On Ventures · Blog</title>
+<link rel="stylesheet" href="styles/nightfall.css" />
+<style>
+  /* featured */
+  .bl-featured { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1px; background: var(--border-on-dark-1); border: 1px solid var(--border-on-dark-1); border-radius: var(--radius-2xl); overflow: hidden; margin-top: 8px; }
+  .bl-feat-main { background: var(--bg-inverse); padding: clamp(34px, 4vw, 56px); display: flex; flex-direction: column; transition: background .4s; }
+  .bl-feat-main:hover { background: #2f2f2f; }
+  .bl-feat-side { background: linear-gradient(150deg, #E0D8D1, #c9bbae); position: relative; min-height: 260px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .bl-feat-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .bl-feat-logo-img { position: absolute; inset: 0; margin: auto; max-width: 56%; max-height: 50%; object-fit: contain; z-index: 2; }
+  .bl-feat-side.has-logo .glyph { display: none; }
+  .bl-feat-side .glyph { width: clamp(70px, 9vw, 120px); height: auto; color: rgba(41,41,41,.22); }
+  .bl-feat-side .glyph svg { width: 100%; height: 100%; }
+  .bl-feat-side .ph { position: absolute; bottom: 16px; right: 18px; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(41,41,41,.4); }
+  .bl-flag { display: inline-flex; align-items: center; gap: 10px; font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--povc-beige); }
+  .bl-flag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--povc-beige); }
+  .bl-feat-title { font-family: var(--font-heading); font-weight: 800; letter-spacing: -.03em; font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.03; color: #fff; margin-top: 22px; text-wrap: balance; }
+  .bl-feat-excerpt { color: var(--fg-on-dark-2); font-weight: 300; font-size: 1.08rem; line-height: 1.6; margin-top: 20px; max-width: 52ch; }
+  .bl-feat-foot { margin-top: auto; padding-top: 30px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .bl-meta { font-size: .82rem; color: var(--fg-on-dark-3); }
+  .bl-meta b { color: #fff; font-weight: 600; }
+  @media (max-width: 820px){ .bl-featured { grid-template-columns: 1fr; } .bl-feat-side { min-height: 180px; order: -1; } }
+
+  /* controls */
+  .bl-controls { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin: clamp(50px, 7vw, 80px) 0 0; }
+  .bl-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .bl-filters button { border: 1px solid var(--border-on-dark-2); border-radius: var(--radius-full); padding: 9px 18px; font-size: .8rem; color: var(--fg-on-dark-2); transition: all .25s; }
+  .bl-filters button:hover { color: #fff; border-color: var(--fg-on-dark-3); }
+  .bl-filters button.active { background: var(--povc-beige); color: #1c1c1c; border-color: var(--povc-beige); }
+
+  /* grid */
+  .bl-grid { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-on-dark-1); border: 1px solid var(--border-on-dark-1); }
+  .bl-card { background: var(--bg-inverse); padding: 34px 30px; min-height: 290px; display: flex; flex-direction: column; transition: background .4s var(--ease-out); position: relative; }
+  .bl-card:hover { background: #2f2f2f; }
+  .bl-cat { font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--povc-beige); }
+  .bl-title { font-family: var(--font-heading); font-weight: 700; letter-spacing: -.02em; font-size: 1.4rem; line-height: 1.14; color: #fff; margin-top: 16px; }
+  .bl-excerpt { color: var(--fg-on-dark-2); font-weight: 300; font-size: .92rem; line-height: 1.55; margin-top: 14px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .bl-foot { margin-top: auto; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .bl-go { width: 22px; height: 22px; color: var(--fg-on-dark-3); transition: transform .4s var(--ease-out), color .3s; }
+  .bl-card:hover .bl-go { color: var(--povc-beige); transform: translate(3px,-3px); }
+  .bl-card.hide { display: none; }
+  @media (max-width: 900px){ .bl-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 580px){ .bl-grid { grid-template-columns: 1fr; } }
+
+  .bl-cta { text-align: center; padding: clamp(70px, 9vw, 110px) 0 0; }
+</style>
+</head>
+<body>
+  <nav class="nf-nav" id="nf-nav"></nav>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="eyebrow reveal">Blog</div>
+      <h1 class="reveal reveal-d1">Field notes from the next wave of consumer.</h1>
+      <p class="lede reveal reveal-d2">Theses, founder playbooks, and the tools we use to build leaner, written by the Press On team and published on Medium.</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: clamp(30px,5vw,56px);">
+    <div class="container">
+      <div class="bl-featured reveal" id="blFeatured"></div>
+
+      <div class="bl-controls reveal">
+        <div class="bl-filters" id="blFilters"></div>
+        <a class="btn-ghost" href="https://medium.com/@pressonvc" target="_blank" rel="noopener">All posts on Medium <span id="medArrow"></span></a>
+      </div>
+
+      <div class="bl-grid reveal" id="blGrid"></div>
+
+      <div class="bl-cta reveal">
+        <a class="btn-beige" href="https://medium.com/@pressonvc" target="_blank" rel="noopener">Read more on Medium <span id="medArrow2"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="nf-footer" id="nf-footer"></footer>
+
+  <script src="styles/povc-data.js"></script>
+  <script src="styles/nightfall-data.js"></script>
+  <script src="styles/nightfall.js"></script>
+  <script>
+    NF_renderChrome('blog');
+    var posts = window.POVC_BLOG || [];
+    var cats = window.POVC_BLOG_CATS || [];
+    var catLabel = {}; cats.forEach(function(c){ catLabel[c.key] = c.label; });
+
+    // featured = most recent
+    var f = posts[0];
+    document.getElementById('blFeatured').innerHTML =
+      '<a class="bl-feat-main" href="'+f.url+'" target="_blank" rel="noopener">'
+      + '<div class="bl-flag"><span class="dot"></span>Latest \u00b7 '+catLabel[f.cat]+'</div>'
+      + '<h2 class="bl-feat-title">'+f.title+'</h2>'
+      + '<p class="bl-feat-excerpt">'+f.excerpt+'</p>'
+      + '<div class="bl-feat-foot"><div class="bl-meta"><b>'+f.author+'</b>'+(f.date?' \u00b7 '+f.date:'')+'</div>'
+      +   '<span class="btn-ghost">Read on Medium '+NF_ARROW_UP+'</span></div>'
+      + '</a>'
+      + '<div class="bl-feat-side'+(f.logo ? ' has-logo' : '')+'">'
+      +   (f.logo ? '<img class="bl-feat-logo-img" src="'+f.logo+'" alt="'+f.title+'" onerror="this.parentNode.classList.remove(&quot;has-logo&quot;);this.remove();" />' : '')
+      +   (!f.logo && f.img ? '<img class="bl-feat-img" src="'+f.img+'" alt="'+f.title+'" onerror="this.remove()" />' : '')
+      +   '<span class="glyph">'+window.POVC_POWER_SVG+'</span>'
+      +   ((f.logo || f.img) ? '' : '<span class="ph">Article imagery</span>')
+      + '</div>';
+
+    // filters
+    var fil = document.getElementById('blFilters');
+    fil.innerHTML = '<button class="active" data-cat="all">All</button>' + cats.map(function(c){
+      return '<button data-cat="'+c.key+'">'+c.label+'</button>';
+    }).join('');
+
+    // grid = all posts (featured duplicate hidden when 'all')
+    document.getElementById('blGrid').innerHTML = posts.map(function(p, i){
+      return '<a class="bl-card" href="'+p.url+'" target="_blank" rel="noopener" data-cat="'+p.cat+'" data-feat="'+(i===0?'1':'0')+'">'
+        + '<div class="bl-cat">'+catLabel[p.cat]+'</div>'
+        + '<h3 class="bl-title">'+p.title+'</h3>'
+        + '<p class="bl-excerpt">'+p.excerpt+'</p>'
+        + '<div class="bl-foot"><div class="bl-meta"><b>'+p.author+'</b>'+(p.date?' \u00b7 '+p.date:'')+'</div><span class="bl-go">'+NF_ARROW_UP+'</span></div>'
+        + '</a>';
+    }).join('');
+
+    function applyFilter(cat){
+      var featEl = document.getElementById('blFeatured');
+      featEl.style.display = (cat === 'all') ? '' : 'none';
+      document.querySelectorAll('.bl-card').forEach(function(card){
+        var show;
+        if (cat === 'all') show = card.dataset.feat !== '1';
+        else show = card.dataset.cat === cat;
+        card.classList.toggle('hide', !show);
+      });
+    }
+    applyFilter('all');
+    fil.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        fil.querySelectorAll('button').forEach(function(x){x.classList.remove('active');});
+        b.classList.add('active');
+        applyFilter(b.dataset.cat);
+      });
+    });
+
+    document.getElementById('medArrow').innerHTML = NF_ARROW_UP;
+    document.getElementById('medArrow2').innerHTML = NF_ARROW_UP;
+    if (window.POVC_initReveal) window.POVC_initReveal();
+  </script>
+</body>
+</html>

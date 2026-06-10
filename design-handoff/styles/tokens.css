@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════════════════
+   PRESS ON VENTURES — Colors & Type Foundations
+   Brand: Inter Bold (headings) · Poppins (body)
+   Palette: #292929 · #E0D8D1 · #F2F2F2 · #FFFFFF
+═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ── BRAND COLORS ─────────────────────────────────────── */
+  --povc-dark:   #292929;   /* Primary text, dark backgrounds */
+  --povc-beige:  #E0D8D1;   /* Accent backgrounds, cards */
+  --povc-grey:   #F2F2F2;   /* Section backgrounds */
+  --povc-white:  #FFFFFF;   /* Text on dark, backgrounds */
+
+  /* Brand gradient */
+  --povc-gradient: linear-gradient(180deg, #E0D8D1 0%, #FFFFFF 100%);
+
+  /* ── SEMANTIC COLOR TOKENS ────────────────────────────── */
+  /* Foreground (text) */
+  --fg-1: #292929;               /* Primary text */
+  --fg-2: rgba(41, 41, 41, 0.70);/* Secondary text, body on light */
+  --fg-3: rgba(41, 41, 41, 0.55);/* Tertiary / muted */
+  --fg-4: rgba(41, 41, 41, 0.40);/* Disabled, eyebrow secondary */
+  --fg-eyebrow: rgba(41, 41, 41, 0.50);
+
+  /* Foreground on dark backgrounds */
+  --fg-on-dark-1: #FFFFFF;
+  --fg-on-dark-2: rgba(255, 255, 255, 0.70);
+  --fg-on-dark-3: rgba(255, 255, 255, 0.45);
+  --fg-on-dark-4: rgba(255, 255, 255, 0.30);
+
+  /* Background */
+  --bg-1: #FFFFFF;               /* Default */
+  --bg-2: #F2F2F2;               /* Section alt */
+  --bg-3: #E0D8D1;               /* Beige/warm section */
+  --bg-inverse: #292929;         /* Dark section */
+
+  /* Borders & dividers */
+  --border-1: rgba(41, 41, 41, 0.08);
+  --border-2: rgba(41, 41, 41, 0.10);
+  --border-3: rgba(41, 41, 41, 0.06);
+  --border-on-dark-1: rgba(255, 255, 255, 0.08);
+  --border-on-dark-2: rgba(255, 255, 255, 0.15);
+
+  /* Surface (cards) */
+  --surface-light:  #FFFFFF;
+  --surface-alt:    #F2F2F2;
+  --surface-dark:   rgba(255, 255, 255, 0.05);  /* Card on dark bg */
+  --surface-dark-hover: rgba(255, 255, 255, 0.09);
+
+  /* ── SHADOWS ──────────────────────────────────────────── */
+  --shadow-sm:  0 2px 8px  rgba(0, 0, 0, 0.04);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.10);
+  --shadow-xl:  0 16px 40px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 20px 48px rgba(0, 0, 0, 0.16);
+  --shadow-nav: 0 4px 24px rgba(0, 0, 0, 0.30);
+
+  /* ── RADII ───────────────────────────────────────────── */
+  --radius-xs:  6px;   /* Badges, nav links */
+  --radius-sm:  8px;
+  --radius-md:  12px;  /* Icon squares, small cards */
+  --radius-lg:  14px;
+  --radius-xl:  16px;  /* Info cards */
+  --radius-2xl: 20px;  /* Portfolio cards, thesis cards */
+  --radius-3xl: 24px;  /* Stats panels */
+  --radius-full: 9999px;
+
+  /* ── SPACING SCALE (based on observed deck patterns) ─── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* ── EASING ───────────────────────────────────────────── */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── TYPE FAMILIES ────────────────────────────────────── */
+  --font-heading: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    'Poppins', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ── RAW TYPE SCALE ───────────────────────────────────── */
+  --text-xs:   0.72rem;  /* 11.5px  — eyebrow, micro label */
+  --text-sm:   0.82rem;  /* 13.1px  — caption, badge */
+  --text-base: 0.92rem;  /* 14.7px  — body default */
+  --text-md:   1rem;     /* 16px    — body emphasised */
+  --text-lg:   1.1rem;   /* 17.6px  — pco name, large label */
+  --text-xl:   1.3rem;   /* 20.8px  — team h3 */
+  --text-2xl:  1.6rem;   /* 25.6px  — donut value */
+  --text-3xl:  2.4rem;   /* 38.4px  — team stat */
+  --text-4xl:  2.8rem;   /* 44.8px  — fund stat XL */
+  --text-5xl:  3.2rem;   /* 51.2px  — section title max */
+  --text-6xl:  5rem;     /* 80px    — scorecard hero */
+  --text-hero: 6rem;     /* 96px    — cover logo */
+
+  /* ── SEMANTIC TEXT ROLES (component-level) ───────────── */
+  /* Eyebrow — uppercase label above titles */
+  --eyebrow-family:   var(--font-body);
+  --eyebrow-weight:   500;
+  --eyebrow-size:     var(--text-xs);
+  --eyebrow-tracking: 0.18em;
+  --eyebrow-case:     uppercase;
+
+  /* Section title (h2) */
+  --h2-family:   var(--font-heading);
+  --h2-weight:   700;
+  --h2-size:     clamp(2rem, 4vw, 3.2rem);
+  --h2-line:     1.1;
+  --h2-tracking: -0.02em;
+
+  /* Hero headline / display */
+  --h1-family:   var(--font-heading);
+  --h1-weight:   700;
+  --h1-size:     clamp(2rem, 4vw, 3.5rem);
+  --h1-line:     1.15;
+  --h1-tracking: -0.03em;
+
+  /* Card heading (h3) */
+  --h3-family:   var(--font-heading);
+  --h3-weight:   700;
+  --h3-size:     var(--text-xl);
+  --h3-line:     1.2;
+  --h3-tracking: -0.01em;
+
+  /* Section subheading / label caps (h4) */
+  --h4-family:   var(--font-body);
+  --h4-weight:   600;
+  --h4-size:     0.88rem;
+  --h4-line:     1.4;
+  --h4-tracking: 0.06em;
+  --h4-case:     uppercase;
+
+  /* Body */
+  --p-family: var(--font-body);
+  --p-weight: 400;
+  --p-size:   var(--text-base);
+  --p-line:   1.65;
+
+  /* Small body / caption */
+  --p-sm-size: 0.83rem;
+  --p-sm-line: 1.55;
+
+  /* Stat number (big display) */
+  --stat-family:   var(--font-heading);
+  --stat-weight:   700;
+  --stat-tracking: -0.04em;
+  --stat-line:     1;
+  --stat-size-lg:  clamp(2.8rem, 6vw, 5rem);
+  --stat-size-md:  2.4rem;
+
+  /* Logo text (wordmark) */
+  --logo-family:   var(--font-heading);
+  --logo-weight:   700;
+  --logo-tracking: 0.12em;
+  --logo-case:     uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT-LEVEL TYPE CLASSES (drop-in)
+═══════════════════════════════════════════════════════════════ */
+.povc-eyebrow {
+  font-family: var(--eyebrow-family);
+  font-weight: var(--eyebrow-weight);
+  font-size: var(--eyebrow-size);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: var(--eyebrow-case);
+  color: var(--fg-eyebrow);
+}
+.povc-eyebrow.on-dark { color: var(--fg-on-dark-3); }
+
+.povc-h1 {
+  font-family: var(--h1-family);
+  font-weight: var(--h1-weight);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
+  letter-spacing: var(--h1-tracking);
+  color: var(--fg-1);
+}
+
+.povc-h2 {
+  font-family: var(--h2-family);
+  font-weight: var(--h2-weight);
+  font-size: var(--h2-size);
+  line-height: var(--h2-line);
+  letter-spacing: var(--h2-tracking);
+  color: var(--fg-1);
+}
+
+.povc-h3 {
+  font-family: var(--h3-family);
+  font-weight: var(--h3-weight);
+  font-size: var(--h3-size);
+  line-height: var(--h3-line);
+  letter-spacing: var(--h3-tracking);
+  color: var(--fg-1);
+}
+
+.povc-h4 {
+  font-family: var(--h4-family);
+  font-weight: var(--h4-weight);
+  font-size: var(--h4-size);
+  line-height: var(--h4-line);
+  letter-spacing: var(--h4-tracking);
+  text-transform: var(--h4-case);
+  color: var(--fg-1);
+}
+
+.povc-p {
+  font-family: var(--p-family);
+  font-weight: var(--p-weight);
+  font-size: var(--p-size);
+  line-height: var(--p-line);
+  color: var(--fg-2);
+}
+
+.povc-caption {
+  font-family: var(--p-family);
+  font-size: var(--p-sm-size);
+  line-height: var(--p-sm-line);
+  color: var(--fg-3);
+}
+
+.povc-stat {
+  font-family: var(--stat-family);
+  font-weight: var(--stat-weight);
+  letter-spacing: var(--stat-tracking);
+  line-height: var(--stat-line);
+  color: var(--fg-1);
+  font-size: var(--stat-size-lg);
+}
+
+.povc-title-rule {
+  width: 40px;
+  height: 3px;
+  background: var(--fg-1);
+  border-radius: 2px;
+}
+.povc-title-rule.on-dark { background: var(--fg-on-dark-3); }
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL RESET FOR DEMO PAGES
+═══════════════════════════════════════════════════════════════ */
+body.povc-demo {
+  font-family: var(--font-body);
+  color: var(--fg-1);
+  background: var(--bg-1);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
