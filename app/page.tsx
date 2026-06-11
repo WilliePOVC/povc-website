@@ -9,7 +9,7 @@ import styles from './page.module.css';
 export const metadata: Metadata = {
   title: 'Press On Ventures',
   description:
-    'Early-stage consumer venture capital. Investing in resilient founders building transformative consumer businesses across health, wellbeing, and experiences.',
+    'Early-stage consumer venture capital. Investing in resilient founders building transformative consumer businesses across health, well-being, and experiences.',
 };
 
 // Five hand-picked companies for the homepage teaser. To change the featured
@@ -34,7 +34,7 @@ export default function HomePage() {
           </h1>
           <p className={`${styles.heroSub} reveal reveal-d2`}>
             Investing in resilient founders building transformative consumer businesses across
-            health, wellbeing, and experiences.
+            health, well-being, and experiences.
           </p>
           <div className={`${styles.heroCue} reveal reveal-d3`}>
             <span className={styles.cueLine} />
