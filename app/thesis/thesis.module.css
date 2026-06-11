@@ -1,0 +1,214 @@
+/* ── THESIS PAGE (dark) ──────────────────────────────── */
+.hero {
+  background: var(--bg-inverse);
+  color: var(--fg-on-dark-1);
+  padding: clamp(140px, 18vw, 220px) 0 clamp(40px, 6vw, 70px);
+}
+
+.heroInner {
+  max-width: 940px;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--povc-beige);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  line-height: 1.03;
+  color: #fff;
+  margin-top: 20px;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  color: var(--fg-on-dark-2);
+  font-weight: 300;
+  line-height: 1.62;
+  max-width: 60ch;
+  margin-top: 26px;
+}
+
+/* ── PULL-QUOTE ──────────────────────────────────────── */
+.quoteWrap {
+  background: var(--bg-inverse);
+  color: var(--fg-on-dark-1);
+  padding: clamp(30px, 5vw, 60px) 0 clamp(50px, 8vw, 90px);
+}
+
+.quote {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: #fff;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.quoteAccent {
+  color: var(--povc-beige);
+}
+
+/* ── CATEGORY COLUMNS ────────────────────────────────── */
+.cats {
+  background: var(--bg-inverse);
+  color: var(--fg-on-dark-1);
+  padding: 0 0 clamp(82px, 12vw, 160px);
+}
+
+.mvCats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-on-dark-1);
+  border: 1px solid var(--border-on-dark-1);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.mvCat {
+  background: var(--bg-inverse);
+  padding: clamp(30px, 3.6vw, 50px);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.4s var(--ease-out);
+}
+
+.mvCat:hover {
+  background: #2f2f2f;
+}
+
+.mvCatTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mvNum {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--povc-beige);
+  border: 1px solid var(--border-on-dark-2);
+  border-radius: var(--radius-full);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mvKind {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-on-dark-3);
+}
+
+.mvCatTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.55rem, 2.6vw, 2.25rem);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  color: #fff;
+  margin-top: 26px;
+  min-height: 2.15em;
+}
+
+.mvCatDesc {
+  color: var(--fg-on-dark-2);
+  font-weight: 300;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin-top: 18px;
+  min-height: 4.9em;
+}
+
+.mvEgs {
+  margin-top: 30px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-on-dark-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.mvEg {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border-on-dark-1);
+  transition: padding 0.35s var(--ease-out);
+}
+
+.mvCat .mvEg:last-child {
+  border-bottom: 0;
+}
+
+.mvEg:hover {
+  padding-left: 8px;
+}
+
+.mvEgName {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.mvEgNote {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--fg-on-dark-2);
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin-top: 4px;
+  min-height: 2.9em;
+}
+
+.mvEgGo {
+  width: 16px;
+  height: 16px;
+  color: var(--fg-on-dark-3);
+  transition: color 0.25s;
+  flex-shrink: 0;
+}
+
+.mvEg:hover .mvEgGo {
+  color: var(--povc-beige);
+}
+
+@media (max-width: 860px) {
+  .mvCats {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,6 +9,7 @@ import styles from './Nav.module.css';
 const NAV_LINKS = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Team', href: '/team' },
+  { label: 'Thesis', href: '/thesis' },
   { label: 'Press', href: '/press' },
   { label: 'Blog', href: '/blog' },
 ];

@@ -22,6 +22,7 @@ export default function Footer() {
               <h4 className={styles.colHead}>Explore</h4>
               <Link href="/portfolio" className={styles.colLink}>Portfolio</Link>
               <Link href="/team" className={styles.colLink}>Team</Link>
+              <Link href="/thesis" className={styles.colLink}>Thesis</Link>
               <Link href="/press" className={styles.colLink}>Press</Link>
               <Link href="/blog" className={styles.colLink}>Blog</Link>
             </div>
