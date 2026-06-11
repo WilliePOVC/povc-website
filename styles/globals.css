@@ -67,7 +67,10 @@ img, svg { display: block; }
     transform: none;
     filter: none;
   }
-  #heroH1.split.in .accent {
+  /* Accent flicker. Target a STABLE literal class (hero-accent) rather than
+     the CSS-module-hashed .accent, since this global rule cannot see the
+     hashed name. The span carries both classes. */
+  #heroH1.split.in .hero-accent {
     animation: powerOnFlicker 1.15s 0.75s both;
     text-shadow: 0 0 34px rgba(224, 216, 209, 0.35);
   }
@@ -89,9 +92,22 @@ img, svg { display: block; }
     color: var(--povc-beige);
     text-shadow: 0 0 30px rgba(224, 216, 209, 0.3);
   }
+
+  /* Hero cursor spotlight. JS toggles the literal `spot-on` class on
+     #heroSection; the spot element is #heroSpot. Driven by ids so no
+     CSS-module hashing can break the link. */
+  #heroSection.spot-on #heroSpot { opacity: 1; }
+
+  /* Contact CTA power-mark ignition. JS adds literal `lit` to #contact; the
+     fill layer carries the literal `cta-fill` class. */
+  #contact.lit .cta-fill { clip-path: inset(0 0 0 0); }
 }
-/* Reduced-motion / no-JS fallback: accent words still read as beige. */
+/* Reduced-motion / no-JS fallback: accent words still read as beige, and the
+   CTA mark renders fully filled (no scroll-reveal). */
 #tq .qw.hl { color: var(--povc-beige); }
+@media (prefers-reduced-motion: reduce) {
+  #contact .cta-fill { clip-path: inset(0 0 0 0) !important; transition: none !important; }
+}
 
 /* ── CATEGORY DOTS ───────────────────────────────────── */
 .cat-dot {

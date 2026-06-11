@@ -114,9 +114,9 @@
   mix-blend-mode: screen;
 }
 
-.hero.spotOn .heroSpot {
-  opacity: 1;
-}
+/* Spotlight visibility toggle is driven by an id-based rule in globals.css
+   (#heroSection.spot-on #heroSpot), because JS toggles a literal class that a
+   CSS-module-hashed selector here could not match. */
 
 .heroInner {
   position: relative;
@@ -617,10 +617,9 @@
   clip-path: inset(100% 0 0 0);
   transition: clip-path 1.3s var(--ease-out) 0.15s;
 }
-
-.cta.lit .ctaFill {
-  clip-path: inset(0 0 0 0);
-}
+/* The lit (ignited) state is applied via #contact.lit .cta-fill in globals.css,
+   because JS toggles a literal `lit` class on the #contact id and the fill
+   carries a literal `cta-fill` class that a hashed module selector can't reach. */
 
 .ctaH2 {
   font-family: var(--font-heading);

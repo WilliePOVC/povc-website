@@ -59,7 +59,8 @@ export default function HomePage() {
         <div className={`container ${styles.heroInner}`}>
           <div className={`${styles.eyebrow} reveal`}>Early-Stage Consumer Venture Capital</div>
           <h1 className={styles.h1} id="heroH1">
-            Backing founders who <span className={styles.accent}>press on.</span>
+            Backing founders who{' '}
+            <span className={`${styles.accent} hero-accent`}>press on.</span>
           </h1>
           <p className={`${styles.heroSub} reveal reveal-d3`}>
             Investing in resilient founders building transformative consumer businesses across
@@ -147,7 +148,7 @@ export default function HomePage() {
       <section className={styles.cta} id="contact">
         <div className={styles.ctaMark}>
           <PowerMark className={`${styles.ctaMarkLayer} ${styles.ctaGhost}`} />
-          <PowerMark className={`${styles.ctaMarkLayer} ${styles.ctaFill}`} />
+          <PowerMark className={`${styles.ctaMarkLayer} ${styles.ctaFill} cta-fill`} />
         </div>
         <div className="container">
           <h2 className={`${styles.ctaH2} reveal`}>

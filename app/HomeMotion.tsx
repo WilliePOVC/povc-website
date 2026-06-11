@@ -90,10 +90,10 @@ export default function HomeMotion() {
         const r = hero.getBoundingClientRect();
         tx = e.clientX - r.left;
         ty = e.clientY - r.top;
-        hero.classList.add('spotOn');
+        hero.classList.add('spot-on');
         if (!raf) raf = requestAnimationFrame(tick);
       };
-      const onLeave = () => hero.classList.remove('spotOn');
+      const onLeave = () => hero.classList.remove('spot-on');
 
       hero.addEventListener('mousemove', onMove);
       hero.addEventListener('mouseleave', onLeave);
