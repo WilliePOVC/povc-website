@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { GPs, TEAM_FULL, VPS, VP_STATS } from '@/lib/data';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
+import { assetPath } from '@/lib/basepath';
 import styles from './team.module.css';
 
 export const metadata: Metadata = {
@@ -45,12 +46,13 @@ export default function TeamPage() {
               <div key={gp.name} className={styles.gp}>
                 <div className={styles.gpPhoto}>
                   <Image
-                    src={gp.headshotPath}
+                    src={assetPath(gp.headshotPath)}
                     alt={gp.name}
                     fill
                     sizes="(max-width: 820px) 100vw, 50vw"
                     className={styles.gpImg}
                     priority
+                    unoptimized
                   />
                 </div>
                 <h2 className={styles.gpName}>{gp.name}</h2>
@@ -100,11 +102,12 @@ export default function TeamPage() {
                 <div className={styles.tmAvatar}>
                   {tm.headshotPath ? (
                     <Image
-                      src={tm.headshotPath}
+                      src={assetPath(tm.headshotPath)}
                       alt={tm.name}
                       fill
                       sizes="52px"
                       className={styles.tmAvatarImg}
+                      unoptimized
                     />
                   ) : (
                     <span className={styles.tmMono}>{getInitials(tm.name)}</span>
@@ -151,11 +154,12 @@ export default function TeamPage() {
                 {vp.headshotPath && (
                   <div className={styles.vpAvatarWrap}>
                     <Image
-                      src={vp.headshotPath}
+                      src={assetPath(vp.headshotPath)}
                       alt={vp.name}
                       fill
                       sizes="48px"
                       className={styles.vpAvatarImg}
+                      unoptimized
                     />
                   </div>
                 )}

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { BlogPost, BLOG_CATS } from '@/lib/data';
 import PowerMark from '@/components/ui/PowerMark';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
+import { assetPath } from '@/lib/basepath';
 import styles from './blog.module.css';
 
 interface Props {
@@ -60,12 +61,12 @@ export default function BlogClient({ posts }: Props) {
             <div className={`${styles.featSide} ${featured.logo ? styles.hasLogo : ''}`}>
               {featured.logo && (
                 <Image
-                  src={featured.logo}
+                  src={assetPath(featured.logo)}
                   alt={featured.title}
                   fill
                   sizes="(max-width: 820px) 100vw, 40vw"
                   className={styles.featLogoImg}
-                  onError={() => {/* graceful */}}
+                  unoptimized
                 />
               )}
               {!featured.logo && featured.img && (
