@@ -48,6 +48,51 @@ img, svg { display: block; }
   .reveal-d5 { transition-delay: 0.60s; }
 }
 
+/* ── HOME: KINETIC HEADLINE + SCROLL-LIT QUOTE ───────── */
+/* These target spans injected at runtime by app/HomeMotion.tsx onto the
+   #heroH1 and #tq elements, so they must live in global (non-module) scope.
+   All effects are gated on prefers-reduced-motion; the static end-state
+   (rendered by the server component) reads correctly without JS. */
+@media (prefers-reduced-motion: no-preference) {
+  #heroH1 .hw { display: inline-block; }
+  #heroH1.split .hw {
+    opacity: 0;
+    transform: translateY(0.55em) rotate(1.5deg);
+    filter: blur(8px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out),
+      filter 0.8s var(--ease-out);
+  }
+  #heroH1.split.in .hw {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  #heroH1.split.in .accent {
+    animation: powerOnFlicker 1.15s 0.75s both;
+    text-shadow: 0 0 34px rgba(224, 216, 209, 0.35);
+  }
+  @keyframes powerOnFlicker {
+    0% { opacity: 0; }
+    10% { opacity: 0.85; }
+    16% { opacity: 0.18; }
+    24% { opacity: 1; }
+    32% { opacity: 0.35; }
+    42%, 100% { opacity: 1; }
+  }
+
+  #tq .qw {
+    color: var(--fg-on-dark-4);
+    transition: color 0.4s linear;
+  }
+  #tq .qw.lit { color: #fff; }
+  #tq .qw.hl.lit {
+    color: var(--povc-beige);
+    text-shadow: 0 0 30px rgba(224, 216, 209, 0.3);
+  }
+}
+/* Reduced-motion / no-JS fallback: accent words still read as beige. */
+#tq .qw.hl { color: var(--povc-beige); }
+
 /* ── CATEGORY DOTS ───────────────────────────────────── */
 .cat-dot {
   width: 7px;
