@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { GPs, TEAM_FULL, VPS, VP_STATS } from '@/lib/data';
+import { GPs, TEAM_FULL } from '@/lib/data';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
 import { assetPath } from '@/lib/basepath';
 import styles from './team.module.css';
@@ -125,52 +125,6 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Venture Partner Network */}
-      <section className="section">
-        <div className="container">
-          <div className="sec-eyebrow reveal">Our Venture Partner Network</div>
-          <h2 className="sec-title reveal" style={{ marginBottom: 40, maxWidth: '20ch' }}>
-            A network that compounds for our founders.
-          </h2>
-
-          <div className={`${styles.vpStats} reveal`}>
-            {VP_STATS.map((s) => (
-              <div key={s.k} className={styles.vpStat}>
-                <div className={`${styles.vpStatV} ${s.v.length > 10 ? styles.vpStatVSm : ''}`}>
-                  {s.v}
-                </div>
-                <div className={styles.vpStatK}>{s.k}</div>
-              </div>
-            ))}
-          </div>
-
-          <p className="sec-lede reveal" style={{ marginTop: 56 }}>
-            Example experts from our venture partner network:
-          </p>
-
-          <div className={`${styles.vpGrid} reveal`}>
-            {VPS.map((vp) => (
-              <div key={vp.name} className={styles.vp}>
-                {vp.headshotPath && (
-                  <div className={styles.vpAvatarWrap}>
-                    <Image
-                      src={assetPath(vp.headshotPath)}
-                      alt={vp.name}
-                      fill
-                      sizes="48px"
-                      className={styles.vpAvatarImg}
-                      unoptimized
-                    />
-                  </div>
-                )}
-                <h3 className={styles.vpName}>{vp.name}</h3>
-                <div className={styles.vpFocus}>{vp.focus}</div>
-                <p className={styles.vpBio}>{vp.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

@@ -244,6 +244,12 @@
 }
 
 /* ── CTA ─────────────────────────────────────────────── */
+.showMore {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
 .cta {
   text-align: center;
   padding: clamp(70px, 9vw, 110px) 0 0;

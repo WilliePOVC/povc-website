@@ -15,18 +15,31 @@ interface Props {
 const CAT_LABEL: Record<string, string> = {};
 BLOG_CATS.forEach((c) => (CAT_LABEL[c.key] = c.label));
 
+const PAGE_SIZE = 9;
+
 export default function BlogClient({ posts }: Props) {
   const [activeCat, setActiveCat] = useState('all');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const featured = posts[0];
   const gridPosts = posts.slice(1);
 
-  const visibleGrid =
+  const matchingGrid =
     activeCat === 'all'
       ? gridPosts
       : posts.filter((p) => p.cat === activeCat);
 
+  const visibleGrid = matchingGrid.slice(0, visibleCount);
+  const hasMore = visibleCount < matchingGrid.length;
+  const remaining = matchingGrid.length - visibleCount;
+
   const showFeatured = activeCat === 'all';
+
+  // Reset the visible window whenever the category filter changes.
+  function selectCat(cat: string) {
+    setActiveCat(cat);
+    setVisibleCount(PAGE_SIZE);
+  }
 
   return (
     <section className="section" style={{ paddingTop: 'clamp(30px, 5vw, 56px)' }}>
@@ -91,7 +104,7 @@ export default function BlogClient({ posts }: Props) {
           <div className={styles.filters}>
             <button
               className={activeCat === 'all' ? styles.filterActive : styles.filterBtn}
-              onClick={() => setActiveCat('all')}
+              onClick={() => selectCat('all')}
             >
               All
             </button>
@@ -99,7 +112,7 @@ export default function BlogClient({ posts }: Props) {
               <button
                 key={c.key}
                 className={activeCat === c.key ? styles.filterActive : styles.filterBtn}
-                onClick={() => setActiveCat(c.key)}
+                onClick={() => selectCat(c.key)}
               >
                 {c.label}
               </button>
@@ -138,6 +151,19 @@ export default function BlogClient({ posts }: Props) {
             </a>
           ))}
         </div>
+
+        {/* Show more */}
+        {hasMore && (
+          <div className={styles.showMore}>
+            <button
+              type="button"
+              className="btn-ghost"
+              onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+            >
+              Show more ({remaining})
+            </button>
+          </div>
+        )}
 
         {/* CTA */}
         <div className={`${styles.cta} reveal`}>

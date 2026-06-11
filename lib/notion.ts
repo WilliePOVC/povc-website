@@ -84,6 +84,7 @@ export async function fetchPressItems(): Promise<PressItem[]> {
           entries.push({
             pub,
             date: formatDate(dateStr),
+            dateISO: dateStr,
             title: headline,
             company,
             url,

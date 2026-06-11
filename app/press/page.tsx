@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { fetchPressItems } from '@/lib/notion';
 import PressClient from './PressClient';
-import { PRESS_FEATURED } from '@/lib/data';
+import { PRESS_FEATURED, pressSortKey } from '@/lib/data';
 
 export const revalidate = 3600; // ISR: revalidate hourly
 
@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default async function PressPage() {
-  const pressItems = await fetchPressItems();
+  const fetched = await fetchPressItems();
+  // Guarantee reverse-chronological order (newest first) regardless of source.
+  const pressItems = [...fetched].sort((a, b) => pressSortKey(b) - pressSortKey(a));
 
   // Derive featured-in publications from data
   const featuredPubs = [...new Set(pressItems.map((p) => p.pub))].filter(

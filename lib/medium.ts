@@ -127,10 +127,13 @@ function parseItems(xml: string): BlogPost[] {
     const cat = getCategory(cleanUrl, title);
     const logo = getLogo(cleanUrl);
 
+    const iso = dateStr ? new Date(dateStr).toISOString() : undefined;
+
     posts.push({
       title,
       author,
       date: parseDate(dateStr),
+      dateISO: iso && iso !== 'Invalid Date' ? iso : undefined,
       cat,
       url: cleanUrl,
       excerpt,
@@ -142,6 +145,49 @@ function parseItems(xml: string): BlogPost[] {
   return posts;
 }
 
+// Normalize a Medium URL to its slug-id so the same post from the live feed and
+// the curated archive dedupe cleanly (strip query params and trailing slashes).
+function urlKey(url: string): string {
+  return url
+    .replace(/[?#].*$/, '')
+    .replace(/\/+$/, '')
+    .split('/')
+    .pop()!
+    .toLowerCase();
+}
+
+// Merge the live Medium feed (newest ~10) with the curated archive of older
+// posts. The live feed wins on duplicates (freshest metadata), the archive
+// supplies everything Medium's RSS no longer returns. Result is
+// reverse-chronological; archive array order breaks ties for undated posts.
+function mergeWithArchive(feed: BlogPost[]): BlogPost[] {
+  const seen = new Set(feed.map((p) => urlKey(p.url)));
+  const archiveExtra = FALLBACK_BLOG.filter((p) => !seen.has(urlKey(p.url)));
+
+  // Assign a tie-break ordinal: feed posts first (newest), then archive order.
+  const withOrder = [
+    ...feed.map((p, i) => ({ p, src: 0, i })),
+    ...archiveExtra.map((p, i) => ({ p, src: 1, i })),
+  ];
+
+  withOrder.sort((a, b) => {
+    const at = a.p.dateISO ? Date.parse(a.p.dateISO) : NaN;
+    const bt = b.p.dateISO ? Date.parse(b.p.dateISO) : NaN;
+    const ad = a.p.date ? Date.parse(a.p.date) : NaN;
+    const bd = b.p.date ? Date.parse(b.p.date) : NaN;
+    const aKey = !Number.isNaN(at) ? at : ad;
+    const bKey = !Number.isNaN(bt) ? bt : bd;
+    if (!Number.isNaN(aKey) && !Number.isNaN(bKey) && aKey !== bKey) {
+      return bKey - aKey; // newest first
+    }
+    // Fall back to source + original array order to keep a stable, sensible order.
+    if (a.src !== b.src) return a.src - b.src;
+    return a.i - b.i;
+  });
+
+  return withOrder.map((x) => x.p);
+}
+
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
     const resp = await fetch(FEED_URL, {
@@ -150,7 +196,7 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     });
 
     if (!resp.ok) {
-      console.warn(`[medium] HTTP ${resp.status} — using fallback`);
+      console.warn(`[medium] HTTP ${resp.status} - using fallback archive`);
       return FALLBACK_BLOG;
     }
 
@@ -158,13 +204,14 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     const posts = parseItems(xml);
 
     if (posts.length === 0) {
-      console.warn('[medium] No posts parsed — using fallback');
+      console.warn('[medium] No posts parsed - using fallback archive');
       return FALLBACK_BLOG;
     }
 
-    return posts;
+    // Merge the fresh feed with older archived posts Medium RSS no longer serves.
+    return mergeWithArchive(posts);
   } catch (err) {
-    console.warn('[medium] Fetch failed — using fallback:', err);
+    console.warn('[medium] Fetch failed - using fallback archive:', err);
     return FALLBACK_BLOG;
   }
 }

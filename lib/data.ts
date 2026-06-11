@@ -261,27 +261,43 @@ export const VP_STATS = [
 export interface PressItem {
   pub: string;
   date: string;
+  // Raw sortable date (ISO yyyy-mm-dd or yyyy-mm / yyyy). Used to guarantee
+  // reverse-chronological order regardless of the human display `date` string.
+  dateISO?: string;
   title: string;
   company: string;
   url: string;
 }
 
+// Normalize a press item's date to a sortable timestamp (newest first).
+// Falls back to parsing the display string when no ISO date is present.
+export function pressSortKey(item: PressItem): number {
+  const raw = item.dateISO || item.date || '';
+  // Try full ISO / parseable date first.
+  const direct = Date.parse(raw);
+  if (!Number.isNaN(direct)) return direct;
+  // Try "Mon YYYY" or "YYYY".
+  const parsed = Date.parse(raw.length === 4 ? `${raw}-12-31` : `1 ${raw}`);
+  if (!Number.isNaN(parsed)) return parsed;
+  return 0; // undated items sort last
+}
+
 export const FALLBACK_PRESS_ITEMS: PressItem[] = [
-  { pub: 'The Wall Street Journal', date: '2025', title: 'The Art of the Alix Earle Deal', company: 'SipMargs', url: 'https://www.wsj.com/style/alix-earle-deal-alex-cooper-podcast-poppi-019f0cca' },
-  { pub: 'Forbes', date: 'Mar 2025', title: 'Alix Earle Invests in Canned Cocktail SipMargs', company: 'SipMargs', url: 'https://www.forbes.com/sites/johnkell/2025/03/11/alix-earle-invests-in-canned-cocktail-margarita-sipmargs/' },
-  { pub: 'TechCrunch', date: 'Apr 2025', title: "Cofertility's Radical Free Egg-Freezing Model", company: 'Cofertility', url: 'https://techcrunch.com/2025/04/12/cofertility-lets-women-freeze-their-eggs-for-free-through-its-donor-matching-program/' },
-  { pub: 'WWD', date: 'Mar 2025', title: 'Ulta Beauty Rolling Out 10Beauty Robot Manicure', company: '10Beauty', url: 'https://wwd.com/beauty-industry-news/beauty-features/robot-manicure-10beauty-ulta-launch-1238341265/' },
-  { pub: 'New York Post', date: 'Apr 2025', title: 'Feno SmartBrush Cleans Teeth All At Once', company: 'Feno', url: 'https://nypost.com/2025/04/08/health/feno-smartbrush-cleans-teeth-all-at-once-reveals-dental-problems/' },
-  { pub: 'Fast Company', date: '2024', title: 'A Robot Built to Give You a Perfect Manicure', company: '10Beauty', url: 'https://www.fastcompany.com/91016475/these-guys-built-a-robot-to-give-you-a-perfect-manicure-can-they-win-over-the-11-billion-nail-care-industry' },
-  { pub: 'CNET', date: '2025', title: 'I Tried the $299 Feno SmartBrush', company: 'Feno', url: 'https://www.cnet.com/tech/services-and-software/i-tried-the-299-feno-smartbrush-to-clean-my-teeth-its-a-mouthful/' },
-  { pub: 'LA Business Journal', date: '2025', title: 'Oral Health Startup Feno Raises $6M', company: 'Feno', url: 'https://labusinessjournal.com/technology/oral-health-startup-feno-raises-6m/' },
-  { pub: 'Healthcare Brew', date: 'Jun 2025', title: 'Making Egg Freezing Free', company: 'Cofertility', url: 'https://www.healthcare-brew.com/stories/2025/06/12/cofertility-startup-egg-donation-free' },
-  { pub: 'Business Wire', date: 'Nov 2024', title: "Magic Story Launches Children's Media Platform", company: 'Magic Story', url: 'https://www.businesswire.com/news/home/20241112521607/en/Magic-Story-Launches-Childrens-Media-Platform-to-Empower-Young-Minds-with-Personalized-Growth-Focused-Stories' },
-  { pub: 'RhythmScience', date: '2024', title: 'Secures $6M Series A from Cedars-Sinai', company: 'Rhythm Science', url: 'https://www.rhythm360.io/resources/rhythmscience-secures-6m-series-a-investment-led-by-cedars-sinai-health-ventures' },
-  { pub: 'Silicon Republic', date: '2024', title: 'Snapfix Lands EUR1.75M', company: 'Snapfix', url: 'https://www.siliconrepublic.com/start-ups/dublin-snapfix-funding-sator-grove-holdings' },
-  { pub: 'WWD', date: '2024', title: 'Interview with Alex Shashou, 10Beauty Founder', company: '10Beauty', url: 'https://wwd.com/beauty-industry-news/beauty-features/10beauty-founder-alexander-shashou-the-catalysts-1238361905/' },
+  { pub: 'Healthcare Brew', date: 'Jun 2025', dateISO: '2025-06-12', title: 'Making Egg Freezing Free', company: 'Cofertility', url: 'https://www.healthcare-brew.com/stories/2025/06/12/cofertility-startup-egg-donation-free' },
+  { pub: 'TechCrunch', date: 'Apr 2025', dateISO: '2025-04-12', title: "Cofertility's Radical Free Egg-Freezing Model", company: 'Cofertility', url: 'https://techcrunch.com/2025/04/12/cofertility-lets-women-freeze-their-eggs-for-free-through-its-donor-matching-program/' },
+  { pub: 'New York Post', date: 'Apr 2025', dateISO: '2025-04-08', title: 'Feno SmartBrush Cleans Teeth All At Once', company: 'Feno', url: 'https://nypost.com/2025/04/08/health/feno-smartbrush-cleans-teeth-all-at-once-reveals-dental-problems/' },
+  { pub: 'Forbes', date: 'Mar 2025', dateISO: '2025-03-11', title: 'Alix Earle Invests in Canned Cocktail SipMargs', company: 'SipMargs', url: 'https://www.forbes.com/sites/johnkell/2025/03/11/alix-earle-invests-in-canned-cocktail-margarita-sipmargs/' },
+  { pub: 'WWD', date: 'Mar 2025', dateISO: '2025-03-01', title: 'Ulta Beauty Rolling Out 10Beauty Robot Manicure', company: '10Beauty', url: 'https://wwd.com/beauty-industry-news/beauty-features/robot-manicure-10beauty-ulta-launch-1238341265/' },
+  { pub: 'The Wall Street Journal', date: '2025', dateISO: '2025-01-01', title: 'The Art of the Alix Earle Deal', company: 'SipMargs', url: 'https://www.wsj.com/style/alix-earle-deal-alex-cooper-podcast-poppi-019f0cca' },
+  { pub: 'CNET', date: '2025', dateISO: '2025-01-01', title: 'I Tried the $299 Feno SmartBrush', company: 'Feno', url: 'https://www.cnet.com/tech/services-and-software/i-tried-the-299-feno-smartbrush-to-clean-my-teeth-its-a-mouthful/' },
+  { pub: 'LA Business Journal', date: '2025', dateISO: '2025-01-01', title: 'Oral Health Startup Feno Raises $6M', company: 'Feno', url: 'https://labusinessjournal.com/technology/oral-health-startup-feno-raises-6m/' },
+  { pub: 'Business Wire', date: 'Nov 2024', dateISO: '2024-11-12', title: "Magic Story Launches Children's Media Platform", company: 'Magic Story', url: 'https://www.businesswire.com/news/home/20241112521607/en/Magic-Story-Launches-Childrens-Media-Platform-to-Empower-Young-Minds-with-Personalized-Growth-Focused-Stories' },
+  { pub: 'Fast Company', date: '2024', dateISO: '2024-06-01', title: 'A Robot Built to Give You a Perfect Manicure', company: '10Beauty', url: 'https://www.fastcompany.com/91016475/these-guys-built-a-robot-to-give-you-a-perfect-manicure-can-they-win-over-the-11-billion-nail-care-industry' },
+  { pub: 'RhythmScience', date: '2024', dateISO: '2024-01-01', title: 'Secures $6M Series A from Cedars-Sinai', company: 'Rhythm Science', url: 'https://www.rhythm360.io/resources/rhythmscience-secures-6m-series-a-investment-led-by-cedars-sinai-health-ventures' },
+  { pub: 'Silicon Republic', date: '2024', dateISO: '2024-01-01', title: 'Snapfix Lands EUR1.75M', company: 'Snapfix', url: 'https://www.siliconrepublic.com/start-ups/dublin-snapfix-funding-sator-grove-holdings' },
+  { pub: 'WWD', date: '2024', dateISO: '2024-01-01', title: 'Interview with Alex Shashou, 10Beauty Founder', company: '10Beauty', url: 'https://wwd.com/beauty-industry-news/beauty-features/10beauty-founder-alexander-shashou-the-catalysts-1238361905/' },
+  { pub: 'LA Business Journal', date: '2024', dateISO: '2024-01-01', title: 'Interview with Willie Litvack', company: 'Press On Ventures', url: 'https://labusinessjournal.com/finance/willie-litvack/' },
   { pub: 'Entrepreneur', date: 'Ongoing', title: 'Willie Litvack, Contributor', company: 'Press On Ventures', url: 'https://www.entrepreneur.com/author/william-litvack' },
-  { pub: 'LA Business Journal', date: '2024', title: 'Interview with Willie Litvack', company: 'Press On Ventures', url: 'https://labusinessjournal.com/finance/willie-litvack/' },
 ];
 
 // Blog (fallback)
@@ -289,6 +305,9 @@ export interface BlogPost {
   title: string;
   author: string;
   date: string;
+  // Raw sortable date (ISO). Used to merge the live Medium feed with the
+  // curated archive and keep everything in reverse-chronological order.
+  dateISO?: string;
   cat: string;
   url: string;
   excerpt: string;
