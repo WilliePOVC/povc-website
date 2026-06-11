@@ -1,0 +1,290 @@
+/* ── GENERAL PARTNERS ────────────────────────────────── */
+.gpGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-on-dark-1);
+  border: 1px solid var(--border-on-dark-1);
+  margin-top: 8px;
+}
+
+.gp {
+  background: var(--bg-inverse);
+  padding: 44px 40px 40px;
+}
+
+.gpPhoto {
+  aspect-ratio: 4 / 3.4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 30px;
+  position: relative;
+  background: linear-gradient(140deg, #E0D8D1, #cbbdb1);
+}
+
+.gpImg {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.gpName {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.gpRole {
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--povc-beige);
+  margin-top: 8px;
+}
+
+.gpBio {
+  margin-top: 22px;
+  color: var(--fg-on-dark-2);
+  font-size: 1.02rem;
+  line-height: 1.64;
+  font-weight: 300;
+}
+
+.gpMeta {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.metaLabel {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-on-dark-3);
+  margin-bottom: 7px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-size: 0.78rem;
+  color: var(--fg-on-dark-2);
+  border: 1px solid var(--border-on-dark-2);
+  border-radius: var(--radius-full);
+  padding: 6px 13px;
+}
+
+.gpLi {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--fg-on-dark-3);
+  padding-bottom: 5px;
+  transition: border-color 0.25s;
+}
+
+.gpLi:hover { border-color: #fff; }
+
+.gpLiArrow { width: 14px; height: 14px; }
+
+@media (max-width: 820px) {
+  .gpGrid { grid-template-columns: 1fr; }
+}
+
+/* ── FULL TEAM ────────────────────────────────────────── */
+.tmGrid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-on-dark-1);
+  border: 1px solid var(--border-on-dark-1);
+}
+
+.tmCell {
+  background: var(--bg-inverse);
+  padding: 32px 28px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.35s;
+}
+
+.tmCell:hover { background: #2f2f2f; }
+
+.tmAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(140deg, #E0D8D1, #cbbdb1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: rgba(41, 41, 41, 0.45);
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tmAvatarImg {
+  object-fit: cover;
+}
+
+.tmMono {
+  position: relative;
+  z-index: 1;
+}
+
+.tmName {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.tmRole {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--povc-beige);
+  margin-top: 7px;
+}
+
+.tmPast {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.84rem;
+  color: var(--fg-on-dark-3);
+  font-weight: 300;
+}
+
+.tmEdu {
+  color: var(--fg-on-dark-2);
+  display: block;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 840px) {
+  .tmGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .tmGrid { grid-template-columns: 1fr; }
+}
+
+/* ── VP STATS ─────────────────────────────────────────── */
+.vpStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-on-dark-1);
+  border: 1px solid var(--border-on-dark-1);
+  margin-top: 8px;
+}
+
+.vpStat {
+  background: var(--bg-inverse);
+  padding: 38px 30px;
+}
+
+.vpStatV {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.03em;
+  color: var(--povc-beige);
+  line-height: 1;
+}
+
+.vpStatVSm {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.vpStatK {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--fg-on-dark-2);
+}
+
+@media (max-width: 760px) {
+  .vpStats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── VP GRID ─────────────────────────────────────────── */
+.vpGrid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.vp {
+  border-top: 2px solid var(--border-on-dark-2);
+  padding-top: 22px;
+  transition: border-color 0.35s;
+}
+
+.vp:hover { border-color: var(--povc-beige); }
+
+.vpAvatarWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 14px;
+  position: relative;
+  background: linear-gradient(140deg, #E0D8D1, #cbbdb1);
+}
+
+.vpAvatarImg {
+  object-fit: cover;
+}
+
+.vpName {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.vpFocus {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--povc-beige);
+  margin-top: 6px;
+}
+
+.vpBio {
+  margin-top: 14px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--fg-on-dark-2);
+  font-weight: 300;
+}
+
+@media (max-width: 840px) {
+  .vpGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .vpGrid { grid-template-columns: 1fr; }
+}
