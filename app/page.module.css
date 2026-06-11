@@ -136,8 +136,8 @@
 }
 
 @keyframes floaty {
-  0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); }
-  50% { transform: translateY(-53%) scale(1.045) rotate(-2.4deg); }
+  0%, 100% { transform: translateY(-50%) scale(0.97); }
+  50% { transform: translateY(-50%) scale(1.06); }
 }
 
 .heroGrain {
