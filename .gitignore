@@ -31,3 +31,6 @@ Thumbs.db
 *.tsbuildinfo
 .vercel
 .turbo
+
+# Next.js generated
+next-env.d.ts
