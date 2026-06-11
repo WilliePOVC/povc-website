@@ -53,9 +53,14 @@ export default function HomePage() {
           <span className={`${styles.blob} ${styles.b2}`} />
           <span className={`${styles.blob} ${styles.b3}`} />
         </div>
-        <PowerMark className={styles.heroGlow} />
+        <div className={styles.heroBeam} aria-hidden />
+        <div className={styles.heroMarkWrap} aria-hidden>
+          <PowerMark className={styles.heroGlow} />
+        </div>
         <div className={styles.heroGrain} aria-hidden />
+        <div className={styles.heroVignette} aria-hidden />
         <div className={styles.heroSpot} id="heroSpot" aria-hidden />
+        <div className={styles.heroSpot2} id="heroSpot2" aria-hidden />
         <div className={`container ${styles.heroInner}`}>
           <div className={`${styles.eyebrow} reveal`}>Early-Stage Consumer Venture Capital</div>
           <h1 className={styles.h1} id="heroH1">
@@ -66,6 +71,10 @@ export default function HomePage() {
             Investing in resilient founders building transformative consumer businesses across
             health, well-being, and experiences.
           </p>
+        </div>
+        <div className={`${styles.scrollCue} reveal reveal-d4`} aria-hidden>
+          <span className={styles.scrollCueText}>Scroll</span>
+          <span className={styles.scrollCueLine} />
         </div>
       </header>
 
@@ -85,7 +94,8 @@ export default function HomePage() {
 
           <div className={`${styles.ttCards} reveal`}>
             {THESIS_CARDS.map((card) => (
-              <Link key={card.num} href="/thesis" className={styles.ttCard}>
+              <Link key={card.num} href="/thesis" className={styles.ttCard} data-tilt="card">
+                <span className={styles.ttSheen} aria-hidden />
                 <ArrowUpRight className={styles.ttGo} />
                 <div className={styles.ttCardTop}>
                   <span className={styles.ttNum}>{card.num}</span>
@@ -123,7 +133,8 @@ export default function HomePage() {
                 href={`/portfolio/${c.slug}`}
                 className={`${styles.ftCard} reveal reveal-d${i + 1}`}
               >
-                <div className={styles.ftTile}>
+                <div className={styles.ftTile} data-tilt="tile">
+                  <span className={styles.ftSheen} aria-hidden />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={assetPath(c.logoUrl)}
@@ -147,6 +158,8 @@ export default function HomePage() {
       {/* ── Contact CTA (igniting power mark) ─────────────── */}
       <section className={styles.cta} id="contact">
         <div className={styles.ctaMark}>
+          <span className={`${styles.ctaBurst} cta-burst`} aria-hidden />
+          <span className={`${styles.ctaHalo} cta-halo`} aria-hidden />
           <PowerMark className={`${styles.ctaMarkLayer} ${styles.ctaGhost}`} />
           <PowerMark className={`${styles.ctaMarkLayer} ${styles.ctaFill} cta-fill`} />
         </div>
@@ -157,6 +170,7 @@ export default function HomePage() {
           <a
             href="mailto:getintouch@presson.vc"
             className={`${styles.ctaMail} reveal reveal-d1`}
+            data-magnet="0.25"
           >
             getintouch@presson.vc
           </a>

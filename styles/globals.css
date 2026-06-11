@@ -34,18 +34,22 @@ img, svg { display: block; }
 @media (prefers-reduced-motion: no-preference) {
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    transform: translateY(34px) scale(0.985);
+    filter: blur(6px);
+    transition: opacity 1s var(--ease-out), transform 1.05s var(--ease-out),
+      filter 1s var(--ease-out);
+    will-change: transform, opacity, filter;
   }
   .reveal.in {
     opacity: 1;
     transform: none;
+    filter: none;
   }
-  .reveal-d1 { transition-delay: 0.12s; }
-  .reveal-d2 { transition-delay: 0.24s; }
-  .reveal-d3 { transition-delay: 0.36s; }
-  .reveal-d4 { transition-delay: 0.48s; }
-  .reveal-d5 { transition-delay: 0.60s; }
+  .reveal-d1 { transition-delay: 0.10s; }
+  .reveal-d2 { transition-delay: 0.20s; }
+  .reveal-d3 { transition-delay: 0.30s; }
+  .reveal-d4 { transition-delay: 0.42s; }
+  .reveal-d5 { transition-delay: 0.54s; }
 }
 
 /* ── HOME: KINETIC HEADLINE + SCROLL-LIT QUOTE ───────── */
@@ -54,56 +58,146 @@ img, svg { display: block; }
    All effects are gated on prefers-reduced-motion; the static end-state
    (rendered by the server component) reads correctly without JS. */
 @media (prefers-reduced-motion: no-preference) {
-  #heroH1 .hw { display: inline-block; }
-  #heroH1.split .hw {
-    opacity: 0;
-    transform: translateY(0.55em) rotate(1.5deg);
-    filter: blur(8px);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out),
-      filter 0.8s var(--ease-out);
+  /* Boot-up exposure ramp: the hero "powers on" once on load. Driven by the
+     literal `booted` class JS adds to #heroSection (id-scoped so CSS-module
+     hashing can't break the link). */
+  #heroSection { --boot: 0; }
+  #heroSection.booted { --boot: 1; }
+  #heroSection::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    background: #161616;
+    opacity: calc(1 - var(--boot));
+    transition: opacity 1.1s var(--ease-out);
   }
-  #heroH1.split.in .hw {
+
+  /* ── Hero headline: per-character mask reveal ──────────── */
+  #heroH1 .hw { display: inline-block; }
+  #heroH1 .hc {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+  }
+  #heroH1.split .hc {
+    opacity: 0;
+    transform: translateY(0.85em) rotate(4deg) scale(0.96);
+    filter: blur(10px);
+    transition: opacity 0.7s var(--ease-out), transform 0.85s var(--ease-out),
+      filter 0.7s var(--ease-out);
+  }
+  #heroH1.split.in .hc {
     opacity: 1;
     transform: none;
     filter: none;
   }
-  /* Accent flicker. Target a STABLE literal class (hero-accent) rather than
-     the CSS-module-hashed .accent, since this global rule cannot see the
-     hashed name. The span carries both classes. */
-  #heroH1.split.in .hero-accent {
-    animation: powerOnFlicker 1.15s 0.75s both;
-    text-shadow: 0 0 34px rgba(224, 216, 209, 0.35);
+
+  /* Accent multi-stage ignition. Targets the STABLE literal `hero-accent`
+     class (not the CSS-module-hashed .accent). The `.ignite` class is added
+     by JS only after every character has landed, so the flicker reads as a
+     deliberate "power on" rather than colliding with the entrance. */
+  #heroH1 .hero-accent {
+    position: relative;
+    transition: text-shadow 0.6s var(--ease-out);
+  }
+  #heroH1 .hero-accent.ignite {
+    animation: powerOnFlicker 1.1s both;
+    text-shadow: 0 0 38px rgba(224, 216, 209, 0.45),
+      0 0 90px rgba(185, 152, 106, 0.25);
+  }
+  /* A thin light-sweep that runs across the accent glyphs at ignition. */
+  #heroH1 .hero-accent.ignite::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 70%
+    );
+    mix-blend-mode: overlay;
+    transform: translateX(-120%);
+    animation: accentSweep 1.1s var(--ease-out) 0.5s both;
+    pointer-events: none;
   }
   @keyframes powerOnFlicker {
-    0% { opacity: 0; }
-    10% { opacity: 0.85; }
-    16% { opacity: 0.18; }
-    24% { opacity: 1; }
-    32% { opacity: 0.35; }
-    42%, 100% { opacity: 1; }
+    0% { opacity: 0.2; }
+    8% { opacity: 0.9; }
+    14% { opacity: 0.2; }
+    22% { opacity: 1; }
+    30% { opacity: 0.45; }
+    40%, 100% { opacity: 1; }
+  }
+  @keyframes accentSweep {
+    0% { transform: translateX(-120%); }
+    100% { transform: translateX(120%); }
   }
 
+  /* ── Thesis scroll-lit quote: blooming beige ───────────── */
   #tq .qw {
+    display: inline-block;
+    position: relative;
+  }
+  #tq .qwInk {
     color: var(--fg-on-dark-4);
-    transition: color 0.4s linear;
+    transition: color 0.45s var(--ease-out), text-shadow 0.45s var(--ease-out);
   }
-  #tq .qw.lit { color: #fff; }
-  #tq .qw.hl.lit {
+  #tq .qw.lit .qwInk { color: #fff; }
+  #tq .qw.hl.lit .qwInk {
     color: var(--povc-beige);
-    text-shadow: 0 0 30px rgba(224, 216, 209, 0.3);
+    text-shadow: 0 0 34px rgba(224, 216, 209, 0.45),
+      0 0 70px rgba(185, 152, 106, 0.2);
   }
+  /* A hairline that draws itself under the highlighted (beige) words. */
+  #tq .qw.hl::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0.18em;
+    bottom: -0.08em;
+    height: 2px;
+    background: linear-gradient(90deg, var(--povc-beige), rgba(185, 152, 106, 0.4));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-out);
+    border-radius: 2px;
+  }
+  #tq .qw.hl.lit::after { transform: scaleX(1); }
 
-  /* Hero cursor spotlight. JS toggles the literal `spot-on` class on
-     #heroSection; the spot element is #heroSpot. Driven by ids so no
-     CSS-module hashing can break the link. */
-  #heroSection.spot-on #heroSpot { opacity: 1; }
+  /* ── Hero cursor spotlight (dual layer) ────────────────── */
+  #heroSection.spot-on #heroSpot,
+  #heroSection.spot-on #heroSpot2 { opacity: 1; }
 
-  /* Contact CTA power-mark ignition. JS adds literal `lit` to #contact; the
-     fill layer carries the literal `cta-fill` class. */
-  #contact.lit .cta-fill { clip-path: inset(0 0 0 0); }
+  /* ── Contact CTA: ignition -> burst -> idle breathing ──── */
+  #contact.lit .cta-fill {
+    clip-path: inset(0 0 0 0);
+  }
+  #contact.burst .cta-fill {
+    animation: ctaGlowPulse 2.4s var(--ease-in-out) infinite;
+  }
+  #contact.lit .cta-halo { opacity: 1; animation: ctaBreathe 4s var(--ease-in-out) infinite; }
+  #contact.lit::before { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  #contact.burst .cta-burst {
+    animation: ctaBurst 0.9s var(--ease-out) forwards;
+  }
+  @keyframes ctaBurst {
+    0% { opacity: 0.9; transform: translate(-50%, -50%) scale(0.4); border-width: 2px; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(3.6); border-width: 0.5px; }
+  }
+  @keyframes ctaBreathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.9; }
+  }
+  @keyframes ctaGlowPulse {
+    0%, 100% { filter: drop-shadow(0 0 0 rgba(185, 152, 106, 0)); }
+    50% { filter: drop-shadow(0 0 14px rgba(185, 152, 106, 0.45)); }
+  }
 }
-/* Reduced-motion / no-JS fallback: accent words still read as beige, and the
-   CTA mark renders fully filled (no scroll-reveal). */
+/* Reduced-motion / no-JS fallback: accent + highlight words read as beige,
+   and the CTA mark renders fully filled with no scroll reveal. */
+#tq .qw.hl .qwInk,
 #tq .qw.hl { color: var(--povc-beige); }
 @media (prefers-reduced-motion: reduce) {
   #contact .cta-fill { clip-path: inset(0 0 0 0) !important; transition: none !important; }

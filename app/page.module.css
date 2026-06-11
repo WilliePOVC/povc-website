@@ -13,6 +13,46 @@
   align-items: center;
   overflow: hidden;
   background: radial-gradient(120% 90% at 78% 18%, #343434 0%, #292929 46%, #1f1f1f 100%);
+  /* pointer parallax + scroll progress, fed by HomeMotion */
+  --px: 0;
+  --py: 0;
+  --scrollP: 0;
+}
+
+/* Boot-up exposure ramp lives in globals.css (#heroSection.booted) because the
+   `booted` class is a literal string added by JS that a CSS-module-hashed
+   selector here could not match. */
+
+/* A slow, wide light beam that sweeps the stage for premium texture. */
+.heroBeam {
+  position: absolute;
+  inset: -40% -10%;
+  pointer-events: none;
+  background: linear-gradient(
+    74deg,
+    transparent 38%,
+    rgba(224, 216, 209, 0.05) 48%,
+    rgba(224, 216, 209, 0.09) 50%,
+    rgba(224, 216, 209, 0.05) 52%,
+    transparent 62%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: beamSweep 13s var(--ease-in-out) 1.4s infinite;
+}
+@keyframes beamSweep {
+  0% { transform: translateX(-30%) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.9; }
+  40% { opacity: 0; }
+  100% { transform: translateX(30%) rotate(0deg); opacity: 0; }
+}
+
+/* Soft cinematic vignette to frame the content. */
+.heroVignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 100% at 50% 42%, transparent 52%, rgba(15, 15, 15, 0.55) 100%);
 }
 
 .heroAurora {
@@ -68,6 +108,17 @@
   50% { transform: translate(5vw, -4vh) scale(0.92); }
 }
 
+/* Floating mark wrapper carries pointer-parallax depth; the inner glow keeps
+   its idle float so the two compose. */
+.heroMarkWrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translate3d(calc(var(--px) * 26px), calc(var(--py) * 20px), 0);
+  transition: transform 0.2s var(--ease-out);
+  will-change: transform;
+}
+
 .heroGlow {
   position: absolute;
   right: -6%;
@@ -77,15 +128,16 @@
   height: auto;
   aspect-ratio: 1;
   color: var(--povc-beige);
-  opacity: 0.09;
+  opacity: calc(0.1 * var(--boot, 1));
   pointer-events: none;
-  filter: drop-shadow(0 0 60px rgba(224, 216, 209, 0.25));
+  filter: drop-shadow(0 0 60px rgba(224, 216, 209, 0.28));
   animation: floaty 14s var(--ease-in-out) infinite;
+  transition: opacity 1.4s var(--ease-out);
 }
 
 @keyframes floaty {
   0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); }
-  50% { transform: translateY(-53%) scale(1.04) rotate(-2deg); }
+  50% { transform: translateY(-53%) scale(1.045) rotate(-2.4deg); }
 }
 
 .heroGrain {
@@ -99,29 +151,49 @@
   pointer-events: none;
 }
 
+/* Dual-layer cursor spotlight: a broad warm wash + a tight bright core, each
+   eased at a different rate (in HomeMotion) for parallax depth. Visibility is
+   toggled via #heroSection.spot-on in globals.css (literal class from JS). */
 .heroSpot {
   position: absolute;
   left: 0;
   top: 0;
-  width: 620px;
-  height: 620px;
+  width: 640px;
+  height: 640px;
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.6s;
-  background: radial-gradient(circle, rgba(224, 216, 209, 0.09), transparent 58%);
+  transition: opacity 0.6s var(--ease-out);
+  background: radial-gradient(circle, rgba(224, 216, 209, 0.11), transparent 60%);
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
+  will-change: transform;
 }
-
-/* Spotlight visibility toggle is driven by an id-based rule in globals.css
-   (#heroSection.spot-on #heroSpot), because JS toggles a literal class that a
-   CSS-module-hashed selector here could not match. */
+.heroSpot2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+  background: radial-gradient(circle, rgba(232, 224, 214, 0.16), rgba(185, 152, 106, 0.06) 40%, transparent 64%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
 
 .heroInner {
   position: relative;
+  z-index: 2;
   max-width: 1080px;
   padding: 120px 0 80px;
+  /* content drifts up + fades slightly as you scroll past the hero */
+  transform: translateY(calc(var(--scrollP) * -40px));
+  opacity: calc(1 - var(--scrollP) * 0.55);
+  will-change: transform, opacity;
 }
 
 .eyebrow {
@@ -174,6 +246,47 @@
   line-height: 1.62;
   color: var(--fg-on-dark-2);
   font-weight: 300;
+}
+
+/* Refined scroll indicator, bottom-left of the hero. */
+.scrollCue {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  bottom: 34px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: calc((1 - var(--scrollP)) * 1);
+}
+.scrollCueText {
+  font-size: 0.62rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--fg-on-dark-3);
+  writing-mode: vertical-rl;
+}
+.scrollCueLine {
+  position: relative;
+  width: 1px;
+  height: 56px;
+  background: var(--border-on-dark-2);
+  overflow: hidden;
+}
+.scrollCueLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--povc-beige), transparent);
+  animation: cueRun 2.1s var(--ease-in-out) infinite;
+}
+@keyframes cueRun {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
+}
+@media (max-width: 880px) {
+  .scrollCue { display: none; }
 }
 
 /* ── SHARED SECTION SCAFFOLD ──────────────────────────── */
@@ -273,6 +386,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
+  perspective: 1200px;
 }
 
 .ttCard {
@@ -286,7 +400,14 @@
   padding: 30px 28px;
   text-decoration: none;
   overflow: hidden;
-  transition: background 0.4s var(--ease-out), border-color 0.4s, transform 0.4s var(--ease-out);
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: background 0.4s var(--ease-out), border-color 0.4s,
+    transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
 }
 
 .ttCard::before {
@@ -298,17 +419,53 @@
   opacity: 0;
   transform: translateX(-60%);
   transition: opacity 0.5s, transform 0.9s var(--ease-out);
+  z-index: 3;
 }
 
+/* Cursor-tracked radial sheen that follows the pointer across the card. */
+.ttSheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    400px circle at var(--gx) var(--gy),
+    rgba(224, 216, 209, 0.1),
+    transparent 46%
+  );
+  transition: opacity 0.4s var(--ease-out);
+  z-index: 2;
+}
+
+.ttCard.tilt-on,
 .ttCard:hover {
   background: #2c2c2c;
   border-color: var(--border-on-dark-2);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+.ttCard:hover:not(.tilt-on) {
   transform: translateY(-3px);
 }
 
 .ttCard:hover::before {
   opacity: 0.8;
   transform: translateX(60%);
+}
+.ttCard.tilt-on .ttSheen {
+  opacity: 1;
+}
+
+/* Lift inner content off the card plane for parallax depth during tilt. */
+.ttCard.tilt-on .ttCardTop,
+.ttCard.tilt-on .ttTitle,
+.ttCard.tilt-on .ttEgs {
+  transform: translateZ(34px);
+}
+.ttCardTop,
+.ttTitle,
+.ttEgs {
+  transition: transform 0.5s var(--ease-out);
 }
 
 .ttCardTop {
@@ -442,6 +599,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
+  perspective: 1100px;
 }
 
 .ftCard {
@@ -453,7 +611,7 @@
 }
 
 .ftCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
 .ftTile {
@@ -465,7 +623,32 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(155deg, #eae4de 0%, #ddd3c9 100%);
-  transition: box-shadow 0.45s var(--ease-out);
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: box-shadow 0.45s var(--ease-out), transform 0.5s var(--ease-out);
+  will-change: transform;
+}
+
+/* Glossy light sweep across the tile (diagonal sheen that follows pointer). */
+.ftSheen {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  background:
+    radial-gradient(260px circle at var(--gx) var(--gy), rgba(255, 255, 255, 0.55), transparent 42%),
+    linear-gradient(120deg, transparent 38%, rgba(255, 255, 255, 0.35) 50%, transparent 62%);
+  mix-blend-mode: overlay;
+  transition: opacity 0.4s var(--ease-out);
+}
+.ftTile.tilt-on .ftSheen {
+  opacity: 1;
 }
 
 .ftCard:nth-child(2) .ftTile {
@@ -481,8 +664,14 @@
   background: linear-gradient(155deg, #ebe5df 0%, #d8cdc2 100%);
 }
 
-.ftCard:hover .ftTile {
-  box-shadow: var(--shadow-lg);
+.ftCard:hover .ftTile,
+.ftTile.tilt-on {
+  box-shadow: 0 26px 50px -22px rgba(41, 41, 41, 0.4);
+}
+
+/* Logo floats off the tile plane during tilt for depth. */
+.ftTile.tilt-on .ftLogo {
+  transform: translateZ(40px) scale(1.08);
 }
 
 .ftTile::after {
@@ -586,19 +775,37 @@
   }
 }
 
-/* ── CONTACT CTA (igniting power mark) ────────────────── */
+/* ── CONTACT CTA (igniting power mark — signature moment) ── */
 .cta {
+  position: relative;
   background: var(--bg-3);
   color: var(--fg-1);
   text-align: center;
   padding: clamp(90px, 13vw, 160px) 0;
+  overflow: hidden;
+}
+/* A faint warmth that blooms up behind the whole panel once ignited. */
+.cta::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 900px;
+  height: 900px;
+  max-width: 130vw;
+  transform: translate(-50%, -50%) scale(0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(185, 152, 106, 0.16), transparent 60%);
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out), transform 1.6s var(--ease-out);
 }
 
 .ctaMark {
   position: relative;
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 34px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 38px;
 }
 
 .ctaMarkLayer {
@@ -616,6 +823,34 @@
   color: var(--fg-1);
   clip-path: inset(100% 0 0 0);
   transition: clip-path 1.3s var(--ease-out) 0.15s;
+}
+
+/* Expanding ring that fires at ignition completion. */
+.ctaBurst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%) scale(0.4);
+  border-radius: 50%;
+  border: 1.5px solid rgba(185, 152, 106, 0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+/* Soft radial halo that breathes behind the mark once lit. */
+.ctaHalo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%) scale(0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(185, 152, 106, 0.22), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out);
 }
 /* The lit (ignited) state is applied via #contact.lit .cta-fill in globals.css,
    because JS toggles a literal `lit` class on the #contact id and the fill
@@ -654,6 +889,10 @@
   transition: background 0.3s;
 }
 
+.ctaMail {
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+  transition: transform 0.3s var(--ease-out);
+}
 .ctaMail::before {
   content: '';
   position: absolute;
