@@ -223,15 +223,16 @@ export interface TeamMember {
   tags: string;
   past: string;
   headshotPath?: string;
+  li?: string; // LinkedIn profile (Tucker links to OpenClaw)
 }
 
 export const TEAM_FULL: TeamMember[] = [
-  { name: 'Madeline Litvack', role: 'Head of Product', tags: 'Duke · Northwestern', past: 'Twitter / X · Apple', headshotPath: '/headshots/madeline.png' },
-  { name: 'Nikhil Bhambi', role: 'Venture Associate', tags: 'Northwestern · Claremont McKenna', past: 'National Securities', headshotPath: '/headshots/nikhil.png' },
-  { name: 'Mukul Anand', role: 'Venture Analyst', tags: 'University of Pennsylvania', past: '', headshotPath: '/headshots/mukul.png' },
-  { name: 'Gagan Chawla', role: 'Fractional CFO', tags: 'UCLA', past: 'Cedars-Sinai · PwC · Ballistic Ventures', headshotPath: '/headshots/gagan.png' },
-  { name: 'Gianna Orozco', role: 'Fractional Controller', tags: 'Santa Clara', past: 'Virgin · Claremont Creek', headshotPath: '/headshots/gianna.png' },
-  { name: 'Tucker Curtis', role: 'Operations', tags: '', past: 'OpenClaw', headshotPath: '/headshots/tucker.png' },
+  { name: 'Madeline Litvack', role: 'Head of Product', tags: 'Duke · Northwestern', past: 'Twitter / X · Apple', headshotPath: '/headshots/madeline.png', li: 'https://www.linkedin.com/in/madelinelitvack/' },
+  { name: 'Nikhil Bhambi', role: 'Venture Associate', tags: 'Northwestern · Claremont McKenna', past: 'National Securities', headshotPath: '/headshots/nikhil.png', li: 'https://www.linkedin.com/in/nikhilbhambi/' },
+  { name: 'Mukul Anand', role: 'Venture Analyst', tags: 'University of Pennsylvania', past: '', headshotPath: '/headshots/mukul.png', li: 'https://www.linkedin.com/in/mukul-r-anand/' },
+  { name: 'Gagan Chawla', role: 'Fractional CFO', tags: 'UCLA', past: 'Cedars-Sinai · PwC · Ballistic Ventures', headshotPath: '/headshots/gagan.png', li: 'https://www.linkedin.com/in/gagan-s-chawla-a2753a2a/' },
+  { name: 'Gianna Orozco', role: 'Fractional Controller', tags: 'Santa Clara', past: 'Virgin · Claremont Creek', headshotPath: '/headshots/gianna.png', li: 'https://www.linkedin.com/in/gianna-orozco-2852838/' },
+  { name: 'Tucker Curtis', role: 'Operations', tags: '', past: 'OpenClaw', headshotPath: '/headshots/tucker.png', li: 'https://openclaw.ai' },
 ];
 
 export interface VPMember {

@@ -97,30 +97,54 @@ export default function TeamPage() {
           <h2 className="sec-title reveal">Operators in every seat.</h2>
 
           <div className={`${styles.tmGrid} reveal`}>
-            {TEAM_FULL.map((tm) => (
-              <div key={tm.name} className={styles.tmCell}>
-                <div className={styles.tmAvatar}>
-                  {tm.headshotPath ? (
-                    <Image
-                      src={assetPath(tm.headshotPath)}
-                      alt={tm.name}
-                      fill
-                      sizes="52px"
-                      className={styles.tmAvatarImg}
-                      unoptimized
-                    />
-                  ) : (
-                    <span className={styles.tmMono}>{getInitials(tm.name)}</span>
+            {TEAM_FULL.map((tm) => {
+              const isLinkedIn = !!tm.li && tm.li.includes('linkedin.com');
+              const cellInner = (
+                <>
+                  <div className={styles.tmAvatar}>
+                    {tm.headshotPath ? (
+                      <Image
+                        src={assetPath(tm.headshotPath)}
+                        alt={tm.name}
+                        fill
+                        sizes="52px"
+                        className={styles.tmAvatarImg}
+                        unoptimized
+                      />
+                    ) : (
+                      <span className={styles.tmMono}>{getInitials(tm.name)}</span>
+                    )}
+                  </div>
+                  <h3 className={styles.tmName}>{tm.name}</h3>
+                  <div className={styles.tmRole}>{tm.role}</div>
+                  <div className={styles.tmPast}>
+                    {tm.tags && <span className={styles.tmEdu}>{tm.tags}</span>}
+                    {tm.past}
+                  </div>
+                  {tm.li && (
+                    <span className={styles.tmLi}>
+                      {isLinkedIn ? 'LinkedIn' : 'Profile'}
+                      <ArrowUpRight className={styles.tmLiArrow} />
+                    </span>
                   )}
+                </>
+              );
+              return tm.li ? (
+                <a
+                  key={tm.name}
+                  href={tm.li}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.tmCell} ${styles.tmCellLink}`}
+                >
+                  {cellInner}
+                </a>
+              ) : (
+                <div key={tm.name} className={styles.tmCell}>
+                  {cellInner}
                 </div>
-                <h3 className={styles.tmName}>{tm.name}</h3>
-                <div className={styles.tmRole}>{tm.role}</div>
-                <div className={styles.tmPast}>
-                  {tm.tags && <span className={styles.tmEdu}>{tm.tags}</span>}
-                  {tm.past}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

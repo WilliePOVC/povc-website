@@ -123,6 +123,41 @@
 
 .tmCell:hover { background: #2f2f2f; }
 
+.tmCellLink {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* LinkedIn / profile affordance, revealed on hover of a linked cell. */
+.tmLi {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 16px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: var(--povc-beige);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), gap 0.25s;
+}
+
+.tmCellLink:hover .tmLi {
+  opacity: 1;
+  transform: none;
+}
+
+.tmCellLink:hover .tmLi {
+  gap: 10px;
+}
+
+.tmLiArrow {
+  width: 13px;
+  height: 13px;
+}
+
 .tmAvatar {
   width: 52px;
   height: 52px;
