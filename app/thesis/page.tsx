@@ -61,12 +61,12 @@ const THESIS_CATS = [
 export default function ThesisPage() {
   return (
     <>
-      {/* Hero */}
-      <header className={styles.hero}>
-        <div className={`container ${styles.heroInner}`}>
-          <div className={`${styles.eyebrow} reveal`}>Thesis</div>
-          <h1 className={`${styles.h1} reveal reveal-d1`}>The next wave of AI is consumer.</h1>
-          <p className={`${styles.lede} reveal reveal-d2`}>
+      {/* Hero — shared page-hero pattern (matches Portfolio/Team: left-justified + divider) */}
+      <header className="page-hero">
+        <div className="container">
+          <div className="eyebrow reveal">Thesis</div>
+          <h1 className="reveal reveal-d1">The next wave of AI is consumer.</h1>
+          <p className="lede reveal reveal-d2">
             As the generative-AI cycle matures, the easy enterprise trade is largely priced in. We
             believe the next leg of AI value creation will be in consumer.
           </p>
