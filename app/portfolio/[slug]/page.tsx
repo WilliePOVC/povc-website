@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { COMPANIES, getCompany, getAdjacentCompanies, CAT_LABELS, FALLBACK_PRESS_ITEMS } from '@/lib/data';
+import { assetPath } from '@/lib/basepath';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
 import ArrowRight from '@/components/ui/ArrowRight';
 import styles from './company.module.css';
@@ -56,8 +57,16 @@ export default async function CompanyPage({ params }: Props) {
           </div>
 
           <div className={`${styles.coHeroImg} reveal reveal-d2`}>
-            <span className={styles.mono}>{mono}</span>
-            <span className={styles.phLabel}>Company imagery placeholder</span>
+            {company.logo ? (
+              <img
+                src={assetPath(`/company-logos/${company.logo}`)}
+                alt={`${company.name} logo`}
+                className={styles.heroLogo}
+                loading="eager"
+              />
+            ) : (
+              <span className={styles.mono}>{mono}</span>
+            )}
           </div>
         </div>
       </header>

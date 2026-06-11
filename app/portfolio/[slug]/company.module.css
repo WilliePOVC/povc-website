@@ -72,14 +72,15 @@
   letter-spacing: -0.04em;
 }
 
-.phLabel {
-  position: absolute;
-  bottom: 18px;
-  right: 22px;
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(41, 41, 41, 0.4);
+.heroLogo {
+  max-width: 44%;
+  max-height: 54%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .coBody {
