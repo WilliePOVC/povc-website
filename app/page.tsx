@@ -3,7 +3,7 @@ import Link from 'next/link';
 import PowerMark from '@/components/ui/PowerMark';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
 import ArrowRight from '@/components/ui/ArrowRight';
-import { getCompany, type Company } from '@/lib/data';
+import { getFeaturedCompanies, type Company } from '@/lib/data';
 import { assetPath } from '@/lib/basepath';
 import HomeMotion from './HomeMotion';
 import styles from './page.module.css';
@@ -14,12 +14,9 @@ export const metadata: Metadata = {
     'Early-stage consumer venture capital. Investing in resilient founders building transformative consumer businesses across health, well-being, and experiences.',
 };
 
-// Five hand-picked companies for the homepage teaser. To change the featured
-// set, edit this list of slugs.
-const FEATURED_SLUGS = ['10beauty', 'cofertility', 'jacob-bar', 'magic-story', 'vuelo'];
-const FEATURED: Company[] = FEATURED_SLUGS.map((s) => getCompany(s)).filter(
-  (c): c is Company => c !== null
-);
+// Homepage teaser companies, driven by Notion's "Homepage Feature" checkbox
+// (mirrored onto each record's `featured` flag in lib/data.ts).
+const FEATURED: Company[] = getFeaturedCompanies();
 
 // Thesis teaser cards (mirrors the Thesis page's two categories).
 const THESIS_CARDS = [

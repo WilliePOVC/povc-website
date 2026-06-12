@@ -19,6 +19,7 @@ export interface Company {
   website: string;
   stage: string;
   why: string;
+  featured: boolean; // Notion "Homepage Feature" checkbox
 }
 
 function slugify(s: string): string {
@@ -30,146 +31,165 @@ export const COMPANIES: Company[] = [
     name: '10Beauty', slug: slugify('10Beauty'), cat: 'health', logo: '10beauty.png',
     logoUrl: '/company-logos/10beauty.png',
     tag: 'Automated Manicure Technology',
-    desc: "The world's first fully automated, salon-quality manicure machine. A 7-camera computer-vision system and robotic arm deliver an end-to-end manicure, now piloting inside Ulta Beauty.",
+    desc: 'Operates the world\'s first fully automated, salon-quality manicure machine, using a proprietary 7-camera computer vision system and robotic arm to deliver an end-to-end manicure (polish removal, shaping, painting, drying) without human intervention.',
     founders: [
       { name: 'Alex Shashou', url: 'https://www.linkedin.com/in/alexander-shashou-42a43b36/' },
       { name: 'Justin Effron', url: 'https://www.linkedin.com/in/justin-effron-b11b0455/' },
     ],
     website: 'https://www.10beauty.co', stage: 'Series A',
-    why: 'Co-founded by the team behind ALICE (acquired by Expedia for $130M) plus an original Roomba engineer. The company has raised $50M+, signed commitments for ~1,000 locations, and is running live pilots inside Ulta Beauty.',
+    why: 'Co-founded by the team behind ALICE (acquired by Expedia for $130M) plus an original Roomba engineer; raised $50M+ from Shine Capital, Imaginary Ventures, Lerer Hippeau, Karlie Kloss, and Victoria Beckham, with signed commitments for ~1,000 locations and live pilot deployments inside Ulta Beauty.',
+    featured: true,
   },
   {
     name: 'Cofertility', slug: slugify('Cofertility'), cat: 'health', logo: 'cofertility.png',
     logoUrl: '/company-logos/cofertility.png',
     tag: 'Free Egg Freezing via Donation',
-    desc: "A human-centered fertility platform whose Split program lets women freeze their eggs for free in exchange for donating half to intended parents who can't otherwise conceive.",
+    desc: 'Reimagines fertility through a human-centered platform whose flagship "Split" program lets women freeze their eggs for free in exchange for donating half to intended parents who can\'t otherwise conceive.',
     founders: [
       { name: 'Lauren Makler', url: 'https://www.linkedin.com/in/laurenmakler/' },
       { name: 'Halle Tecco', url: 'https://www.linkedin.com/in/halletecco/' },
     ],
     website: 'https://www.cofertility.com', stage: 'Seed',
-    why: "Tackles a $10K to $20K affordability gap in a category dominated by opaque incumbents, with a uniquely diverse donor pool (>50% women of color) that incumbents can't replicate.",
+    why: 'Tackles a $10K–$20K affordability gap in a category dominated by transactional, opaque incumbents; has raised ~$20M, matched donors and intended parents in the quadruple digits, and built a uniquely diverse donor pool (>50% women of color) that incumbents can\'t replicate.',
+    featured: true,
   },
   {
     name: 'Feno', slug: slugify('Feno'), cat: 'health', logo: 'feno.png',
     logoUrl: '/company-logos/feno.png',
     tag: 'Smart Toothbrush & Oral Health',
-    desc: "An AI-powered U-shaped Smartbrush that cleans every tooth in 20 seconds, with an embedded oral scanner that turns daily brushing into dentist-grade health monitoring.",
+    desc: 'AI-powered U-shaped Smartbrush that cleans all teeth simultaneously in 20 seconds, with an embedded oral scanner and companion app that turns daily brushing into ongoing, dentist-grade health monitoring.',
     founders: [
       { name: 'Hamet Watt', url: 'https://www.linkedin.com/in/hametwatt/' },
       { name: 'Kenny Brown', url: 'https://www.linkedin.com/in/kennybrowndds/' },
     ],
     website: 'https://feno.co', stage: 'Seed',
-    why: 'Sits at the intersection of two large, durable markets (electric oral care and connected, preventive health) with a defensible AI moat built on a proprietary database of 20,000+ oral scans.',
+    why: 'Sits at the intersection of two large, durable markets: the multi-billion-dollar electric oral care category and the rapidly growing connected-health/preventive-care category, with a defensible AI moat built on a proprietary database of 20,000+ oral scans powering its TrueFit personalization and remote diagnostics.',
+    featured: false,
   },
   {
     name: 'Jacob Bar', slug: slugify('Jacob Bar'), cat: 'health', logo: 'jacobbar.png',
     logoUrl: '/company-logos/jacobbar.png',
-    tag: 'The Healthiest Protein Bar',
-    desc: "A clean-label, high-protein bar with 20g of grass-fed whey, beef tallow, organic honey and dates, and zero seed oils or artificial additives.",
+    tag: 'The Cleanest Protein Bar',
+    desc: 'A clean-label, high-protein bar with 20g of grass-fed whey, beef tallow, organic honey and dates, and zero seed oils or artificial additives engineered for whole-foods nutrition consumers.',
     founders: [
       { name: 'Jake Levy', url: 'https://www.linkedin.com/in/iamjakelevy/' },
     ],
     website: 'https://eatjacob.com', stage: 'Pre-Seed',
-    why: 'Rides the cultural shift away from seed oils and ultra-processed ingredients, with a clean ingredient deck that resonates with the same audience driving RXBAR, David, and Chomps.',
+    why: 'Differentiated in a crowded protein bar category by riding the cultural shift away from seed oils and ultra-processed ingredients, with a clean ingredient deck that resonates with the same audience driving the rise of brands like RXBAR, David, and Chomps.',
+    featured: true,
   },
   {
     name: 'Rhythm Science', slug: slugify('Rhythm Science'), cat: 'health', logo: 'rhythmscience.png',
     logoUrl: '/company-logos/rhythmscience.png',
     tag: 'AI Cardiac Care Platform',
-    desc: "A cloud platform aggregating implantable and wearable device data to enable remote monitoring of hypertension, heart failure, and rhythm disorders.",
+    desc: 'Cloud-based virtual cardiac care platform that aggregates data from implantable and wearable devices to enable remote monitoring and management of hypertension, heart failure, and rhythm disorders, with AI-assisted triage that surfaces actionable signal from massive device data streams.',
     founders: [
       { name: 'Shawn Kumar', url: 'https://www.linkedin.com/in/shawn-kumar/' },
     ],
     website: 'https://www.rhythm360.io', stage: 'Series A',
-    why: 'Goes after one of the highest-cost problems in U.S. healthcare with a software-led model aligned to reimbursement tailwinds in remote patient monitoring and value-based care.',
+    why: 'Goes after one of the highest-cost, highest-volume problems in U.S. healthcare (cardiovascular disease is the #1 cause of death and a leading driver of Medicare spend), with a software-led model that\'s well aligned to reimbursement tailwinds in remote patient monitoring and value-based care.',
+    featured: false,
   },
   {
-    name: 'Gato', slug: slugify('Gato'), cat: 'travel', logo: 'gato.svg',
+    name: 'Gato', slug: slugify('Gato'), cat: 'health', logo: 'gato.svg',
     logoUrl: '/company-logos/gato.svg',
     tag: 'Premium Chocolate-Covered Dates',
-    desc: "Plant-based, refined-sugar-free chocolate-covered dates stuffed with creamy nut butters. An indulgent dessert made only with real, recognizable ingredients.",
+    desc: 'Premium chocolate-covered dates stuffed with creamy nut butters. Plant-based, refined-sugar-free, low-glycemic, and made with only real, recognizable ingredients (no additives, no lecithins) for an indulgent dessert that\'s actually good for you.',
     founders: [
       { name: 'Gabriella Labi', url: 'https://www.linkedin.com/in/gabriella-labi-25a3079b' },
       { name: 'Tonya Reznikovich', url: 'https://www.linkedin.com/in/tonya-reznikovich' },
     ],
     website: 'https://gatodates.com', stage: 'Pre-Seed',
-    why: "Rides the same \"better-for-you indulgence\" wave as Mid-Day Squares and Hu, uniquely positioned as a luxurious, giftable treat with strong momentum on Instagram and TikTok.",
+    why: 'Rides the same "better-for-you indulgence" wave fueling brands like Mid-Day Squares and Hu Chocolate, but uniquely positioned as a luxurious, giftable treat rather than a grab-and-go snack. Gato is already building a loyal DTC and wholesale presence with strong social-driven momentum on Instagram and TikTok and a growing footprint of retail locations.',
+    featured: false,
   },
   {
     name: 'Magic Story', slug: slugify('Magic Story'), cat: 'travel', logo: 'magicstory.png',
     logoUrl: '/company-logos/magicstory.png',
     tag: 'AI-Personalized Kids Content',
-    desc: "An AI-first children's content engine that turns an uploaded photo into a Pixar-quality personalized hardcover in seconds, already serving 100,000+ families.",
+    desc: 'AI-first children\'s content engine that turns an uploaded photo into a Pixar-quality personalized hardcover book in seconds, placing each child\'s likeness on every page as the hero of their own story.',
     founders: [
       { name: 'Erik Ober', url: 'https://www.linkedin.com/in/erikober' },
       { name: 'Alex Hawkins', url: 'https://www.linkedin.com/in/alex-c-hawkins' },
     ],
     website: 'https://www.magicstory.com', stage: 'Seed',
-    why: 'Founded by former Sony Pictures filmmakers already serving 100,000+ families at a 4.9-star rating, combining recurring subscription with high-margin gifting to build an IP and content flywheel.',
+    why: 'Founded by former Sony Pictures filmmakers already serving 100,000+ families with a 4.9-star rating; combines a recurring monthly subscription (Magic Story+) with high-margin gifting to build a defensible IP and content flywheel as generative AI quality compounds.',
+    featured: true,
   },
   {
     name: 'Recess', slug: slugify('Recess'), cat: 'travel', logo: 'recess.png',
     logoUrl: '/company-logos/recess.png',
     tag: 'AI Parenting Platform',
-    desc: "A modern community where parents connect, learn from each other, and buy or sell gently used baby gear in a trusted, parent-vetted marketplace.",
+    desc: 'A modern online community where parents connect, learn from each other, and buy or sell gently used baby gear in a trusted, parent-vetted marketplace.',
     founders: [
       { name: 'Ethan Arpi', url: 'https://www.linkedin.com/in/ethanarpi/' },
       { name: 'Swati Vauthrin', url: 'https://www.linkedin.com/in/swativauthrin' },
     ],
     website: 'https://therecess.app', stage: 'Pre-Seed',
-    why: 'Combines community and resale, two of the strongest engagement and retention drivers in consumer, as secondhand and circular consumption become default for millennial and Gen Z parents.',
+    why: 'Targets the massive parenting commerce category by combining community and resale, two of the strongest engagement and retention drivers in consumer, at a moment when secondhand and circular consumption are becoming the default for millennial and Gen Z parents.',
+    featured: false,
   },
   {
     name: 'SipMargs', slug: slugify('SipMargs'), cat: 'travel', logo: 'sipmargs.png',
     logoUrl: '/company-logos/sipmargs.png',
     tag: 'Premium RTD Margaritas',
-    desc: "A premium ready-to-drink margarita in a can, made with real tequila and 100% natural ingredients. A no-mix, no-compromise cocktail experience.",
+    desc: 'A premium ready-to-drink margarita in a can, made with real tequila and 100% natural ingredients. A no-mix, no-compromise cocktail experience.',
     founders: [
       { name: 'Justin Nabozna', url: 'https://www.linkedin.com/in/justinnabozna/' },
       { name: 'Alix Earle', url: 'https://www.instagram.com/alix_earle/' },
     ],
     website: 'https://www.sipmargs.com', stage: 'Seed',
-    why: 'Plays directly into the two biggest tailwinds in beverage alcohol: the explosive growth of RTD cocktails and the premiumization of tequila, with a clean-ingredient story.',
+    why: 'Plays directly into the two biggest tailwinds in beverage alcohol: the explosive growth of RTD cocktails (one of the fastest-growing alcohol segments) and the continued premiumization of tequila, with a clean-ingredient story that differentiates it from the sugary, additive-heavy incumbents and celebrity endorsement.',
+    featured: false,
   },
   {
     name: 'Skylark', slug: slugify('Skylark'), cat: 'travel', logo: 'skylark.png',
     logoUrl: '/company-logos/skylark.png',
     tag: 'Luxury Travel',
-    desc: "A modern luxury travel platform pairing self-booking of top-tier hotels and flights with optional advisor support, VIP perks, and exclusive rates.",
+    desc: 'A modern luxury travel platform that lets travelers self-book top-tier hotels and flights with optional human advisor support, VIP perks, and exclusive rates blending the convenience of OTAs with the access of a traditional travel agent.',
     founders: [
       { name: 'Miles McMullin', url: 'https://www.linkedin.com/in/milesmcmullin/' },
       { name: 'Mike Greene', url: 'https://www.linkedin.com/in/michael-greene1/' },
     ],
     website: 'https://www.skylark.com', stage: 'Seed',
-    why: 'Captures the fastest-growing slice of travel (luxury and premium leisure) with a tech-forward hybrid model that leverages preferred-partner GDS economics.',
+    why: 'Captures the fastest-growing slice of travel (luxury and premium leisure) with a tech-forward, hybrid model that leverages preferred-partner GDS economics and high-AOV consumer travel business where Press On\'s GP Sean Tolkin has 15+ years of operating expertise.',
+    featured: false,
   },
   {
     name: 'Snapfix', slug: slugify('Snapfix'), cat: 'travel', logo: 'snapfix.png',
     logoUrl: '/company-logos/snapfix.png',
-    tag: 'Property Maintenance Platform',
-    desc: "A photo-first maintenance and operations app that lets teams create and track work orders in seconds from just a picture and a chat thread, replacing legacy systems.",
+    tag: 'Agentic Property Maintenance',
+    desc: 'A photo-first maintenance and operations app that lets frontline teams create and track work orders in seconds using just a picture and a chat thread, replacing legacy CMMS systems built for desktop-bound managers.',
     founders: [
       { name: 'Brett Robbins', url: 'https://www.linkedin.com/in/brettaustinrobbins/' },
     ],
     website: 'https://snapfix.com', stage: 'Seed',
-    why: 'Already deployed across major hospitality customers where compliance and uptime are mission-critical, with a wedge that scales into healthcare, education, and property management.',
+    why: 'Already deployed across major hospitality customers (hotels, resorts, facilities) where compliance and uptime are mission-critical, with a wedge that scales naturally into adjacent verticals (healthcare, education, property management). Overall, applicable for the multi-hundred-billion-dollar global facilities management market still running on clipboards and email.',
+    featured: false,
   },
   {
     name: 'Vuelo', slug: slugify('Vuelo'), cat: 'travel', logo: 'vuelo.png',
     logoUrl: '/company-logos/vuelo.png',
     tag: 'AI-Native Travel & Payments',
-    desc: "The UK's first AI-native travel platform, embedding a personalized payment plan into every trip. Customers see \"Barcelona, 5 nights, £74/month\" instead of a sticker price.",
+    desc: 'The UK\'s first AI-native travel platform, replacing the traditional search bar with a proprietary AI engine that embeds a personalized payment plan into every trip recommendation. Customers see "Barcelona, 5 nights, £74/month" instead of a sticker price with financing bolted on.',
     founders: [
       { name: 'Jasper Dykes', url: 'https://www.linkedin.com/in/jasperdykes/' },
     ],
     website: 'https://getvuelo.com/uk/', stage: 'Seed',
-    why: 'Founded by Jasper Dykes (ex-CEO, Fly Now Pay Later), FCA-authorized, and onboarding thousands of travelers monthly, targeting the most underserved slice of a BNPL category projected to reach $580B by 2030.',
+    why: 'Founded by Jasper Dykes (ex-CEO, Fly Now Pay Later), FCA-authorized, and already onboarding thousands of new travelers each month. Raised £56M in seed (Backed VC, Play Ventures, Viola Credit) to capture the most underserved slice of a BNPL category projected to grow from $342B to $580B by 2030.',
+    featured: true,
   },
 ];
 
 export function getCompany(slug: string): Company | null {
   return COMPANIES.find((c) => c.slug === slug) ?? null;
+}
+
+// Homepage teaser companies. Source of truth is Notion's "Homepage Feature"
+// checkbox, mirrored onto each record's `featured` flag, so the homepage set
+// updates whenever the Notion content is re-synced into this file.
+export function getFeaturedCompanies(): Company[] {
+  return COMPANIES.filter((c) => c.featured);
 }
 
 export function getAdjacentCompanies(slug: string): { prev: Company; next: Company } {
