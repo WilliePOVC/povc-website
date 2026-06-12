@@ -116,7 +116,7 @@ export default function HomePage() {
           <div className={`${styles.ftHead} reveal`}>
             <div>
               <div className={styles.secEyebrow}>Selected Portfolio</div>
-              <h2 className={styles.ftTitle}>A glimpse of who we back.</h2>
+              <h2 className={styles.ftTitle}>Who we back.</h2>
             </div>
             <Link href="/portfolio" className={styles.ftViewAll}>
               View full portfolio <ArrowRight className={styles.viewAllArrow} />
