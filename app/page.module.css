@@ -189,7 +189,9 @@
   position: relative;
   z-index: 2;
   max-width: 1080px;
-  padding: 120px 0 80px;
+  /* Keep the shared container side gutters (the padding shorthand here used to
+     zero out .container's horizontal padding, pushing hero text to the edge). */
+  padding: 120px clamp(24px, 5vw, 80px) 80px;
   /* content drifts up + fades slightly as you scroll past the hero */
   transform: translateY(calc(var(--scrollP) * -40px));
   opacity: calc(1 - var(--scrollP) * 0.55);
@@ -203,7 +205,7 @@
     min-height: 88vh;
   }
   .heroInner {
-    padding: 104px 0 56px;
+    padding: 104px clamp(20px, 6vw, 80px) 56px;
   }
   .eyebrow {
     margin-bottom: 24px;
