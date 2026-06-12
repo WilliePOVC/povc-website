@@ -131,6 +131,37 @@
 .item:hover .go { color: var(--povc-beige); }
 
 @media (max-width: 860px) {
-  .item { grid-template-columns: 1fr auto; }
-  .title, .co { display: none; }
+  .item { grid-template-columns: 1fr 200px 30px; gap: 18px; }
+  /* Publication + date collapse to one column; headline stays visible. */
+  .pub { font-size: 1rem; }
+}
+
+/* On phones, stack the row into a readable card: pub/date, then the headline,
+   then the company tag + arrow. The headline must never be hidden. */
+@media (max-width: 620px) {
+  .item {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'meta go'
+      'title title'
+      'co   co';
+    gap: 10px 14px;
+    padding: 22px 6px;
+    align-items: start;
+  }
+  .meta { grid-area: meta; }
+  .go   { grid-area: go; align-self: center; }
+  .title {
+    grid-area: title;
+    display: block;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: #fff;
+  }
+  .co {
+    grid-area: co;
+    display: inline-block;
+    justify-self: start;
+  }
+  .item:hover { padding-left: 10px; }
 }

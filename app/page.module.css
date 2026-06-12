@@ -196,6 +196,24 @@
   will-change: transform, opacity;
 }
 
+/* On phones, drop the full 100vh hero (too much dead space with centered
+   content) and tighten the vertical rhythm. */
+@media (max-width: 720px) {
+  .hero {
+    min-height: 88vh;
+  }
+  .heroInner {
+    padding: 104px 0 56px;
+  }
+  .eyebrow {
+    margin-bottom: 24px;
+  }
+  .heroSub {
+    margin-top: 26px;
+    font-size: 1.02rem;
+  }
+}
+
 .eyebrow {
   color: var(--povc-beige);
   display: flex;
@@ -550,6 +568,18 @@
   .ttCards {
     grid-template-columns: 1fr;
   }
+  .thesisTeaser {
+    padding: 64px 0;
+  }
+  /* Quote shouldn't get oversized on small screens. */
+  .tq {
+    margin: 36px 0 34px;
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+  }
+  .ttCard {
+    padding: 26px 22px;
+    gap: 16px;
+  }
 }
 
 /* ── SELECTED PORTFOLIO (light, logo tiles) ───────────── */
@@ -557,6 +587,15 @@
   background: var(--bg-1);
   color: var(--fg-1);
   padding: clamp(82px, 11vw, 150px) 0;
+}
+
+@media (max-width: 720px) {
+  .featured {
+    padding: 64px 0;
+  }
+  .ftHead {
+    margin-bottom: 32px;
+  }
 }
 
 .ftHead {
@@ -764,12 +803,18 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   .ftGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
+  /* Tighter tile + smaller name/tag so two fit comfortably on a phone. */
+  .ftName { font-size: 1rem; margin-top: 12px; }
+  .ftTag { font-size: 0.76rem; }
 }
-@media (max-width: 420px) {
+/* Keep 2-up even on the smallest phones (single-column tiles were too large
+   and made the section feel endless); only fall back to 1 below 360px. */
+@media (max-width: 360px) {
   .ftGrid {
     grid-template-columns: 1fr;
   }
@@ -806,6 +851,21 @@
   width: 64px;
   height: 64px;
   margin: 0 auto 38px;
+}
+
+@media (max-width: 720px) {
+  .cta {
+    padding: 72px 0;
+  }
+  .ctaMark {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 28px;
+  }
+  .ctaMail {
+    font-size: 1.05rem;
+    margin-top: 30px;
+  }
 }
 
 .ctaMarkLayer {

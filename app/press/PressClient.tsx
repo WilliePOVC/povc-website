@@ -69,7 +69,7 @@ export default function PressClient({ pressItems, featuredPubs }: Props) {
                 rel="noopener noreferrer"
                 className={styles.item}
               >
-                <div>
+                <div className={styles.meta}>
                   <div className={styles.pub}>{p.pub}</div>
                   <div className={styles.date}>{p.date}</div>
                 </div>

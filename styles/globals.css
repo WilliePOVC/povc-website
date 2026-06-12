@@ -315,3 +315,48 @@ img, svg { display: block; }
 }
 .btn-ghost:hover { color: #fff; gap: 13px; }
 .btn-ghost svg { width: 15px; height: 15px; }
+
+/* ════════════════════════════════════════════════════════
+   MOBILE OPTIMIZATION (shared chrome + inner pages)
+   Tighten the generous desktop vertical rhythm and type so
+   phones don't feel endless. Page-specific grids are handled
+   in each page's CSS module.
+   ════════════════════════════════════════════════════════ */
+@media (max-width: 720px) {
+  /* Inner-page hero: drop the 150px top pad, tighten type. */
+  .page-hero {
+    padding: 104px 0 48px;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    margin-top: 18px;
+  }
+  .page-hero .lede {
+    margin-top: 20px;
+    font-size: 1.02rem;
+  }
+
+  /* Generic section rhythm. */
+  .section {
+    padding: 56px 0;
+  }
+  .sec-title {
+    font-size: clamp(1.7rem, 7.5vw, 2.3rem);
+  }
+
+  /* Comfortable inline-link tap height without changing visual size. */
+  .page-hero .lede a,
+  footer a {
+    display: inline-block;
+    padding: 2px 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-hero {
+    padding: 96px 0 40px;
+  }
+  .section {
+    padding: 48px 0;
+  }
+}
