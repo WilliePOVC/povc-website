@@ -32,11 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Production build for the custom domain www.presson.vc (served at root).
+      # PAGES=false drops the /povc-website basePath so assets resolve from /.
+      # The public/CNAME file tells GitHub Pages to serve the custom domain.
+      # (To revert to the project-page URL williepovc.github.io/povc-website,
+      #  set PAGES: "true" and NEXT_PUBLIC_BASE_PATH: "/povc-website".)
       - name: Build
         run: npm run build
         env:
-          PAGES: "true"
-          NEXT_PUBLIC_BASE_PATH: "/povc-website"
+          PAGES: "false"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
