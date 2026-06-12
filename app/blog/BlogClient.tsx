@@ -73,13 +73,13 @@ export default function BlogClient({ posts }: Props) {
             </div>
             <div className={`${styles.featSide} ${featured.logo ? styles.hasLogo : ''}`}>
               {featured.logo && (
-                <Image
+                // Plain centered block image (not `fill`) so flex centering in
+                // .featSide positions the logo dead-center in the panel.
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
                   src={assetPath(featured.logo)}
                   alt={featured.title}
-                  fill
-                  sizes="(max-width: 820px) 100vw, 40vw"
                   className={styles.featLogoImg}
-                  unoptimized
                 />
               )}
               {!featured.logo && featured.img && (
