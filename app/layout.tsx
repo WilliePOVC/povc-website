@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'Press On Ventures. Back the founders who press on.',
+        alt: 'Press On Ventures. Backing Founders who Press On.',
       },
     ],
   },
