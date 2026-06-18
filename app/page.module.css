@@ -825,20 +825,24 @@
     margin-inline: auto;
   }
 
-  /* Mobile-only: the "View full portfolio" link sat on the right edge with a
-     cramped tap target and would awkwardly wrap under "Who we back" when the
-     row ran out of space. Stack the header vertically, left-align the link,
-     and give it a comfortable full-row tap height. Desktop unchanged. */
+  /* Mobile-only: mirror the thesis section's header so "View Portfolio" sits
+     top-right on the eyebrow row (consistent with "View Thesis"), above the
+     "Who we back." title — instead of bottom-aligned next to the tall title
+     where it crowded the edge and wrapped to two lines. The link is pinned to
+     the top-right of the header; the eyebrow + title flow underneath it.
+     Desktop unchanged. */
   .ftHead {
-    flex-direction: column;
+    position: relative;
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 32px;
   }
   .ftViewAll {
-    align-self: flex-start;
-    padding: 8px 0;
-    font-size: 0.95rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 6px 0;
+    font-size: 0.92rem;
   }
 }
 /* Keep 2-up even on the smallest phones (single-column tiles were too large

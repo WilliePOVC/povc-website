@@ -81,7 +81,7 @@ export default function HomePage() {
           <div className={`${styles.ttHead} reveal`}>
             <div className={styles.secEyebrow}>Our Thesis</div>
             <Link href="/thesis" className={styles.ttViewAll}>
-              View thesis <ArrowRight className={styles.viewAllArrow} />
+              View Thesis <ArrowRight className={styles.viewAllArrow} />
             </Link>
           </div>
 
@@ -119,7 +119,7 @@ export default function HomePage() {
               <h2 className={styles.ftTitle}>Who we back.</h2>
             </div>
             <Link href="/portfolio" className={styles.ftViewAll}>
-              View full portfolio <ArrowRight className={styles.viewAllArrow} />
+              View Portfolio <ArrowRight className={styles.viewAllArrow} />
             </Link>
           </div>
 
