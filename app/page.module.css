@@ -813,6 +813,33 @@
   /* Tighter tile + smaller name/tag so two fit comfortably on a phone. */
   .ftName { font-size: 1rem; margin-top: 12px; }
   .ftTag { font-size: 0.76rem; }
+
+  /* Mobile-only: with 5 featured companies in a 2-up grid the last one
+     (currently Vuelo) was stranded alone in the left column on row 3.
+     Span it across both columns and constrain to a single tile width so it
+     sits centered on its own row, between the two cards above. Desktop
+     (5-up) and tablet (3-up) layouts are unaffected. */
+  .ftCard:nth-child(5):last-child {
+    grid-column: 1 / -1;
+    width: calc(50% - 6px);
+    margin-inline: auto;
+  }
+
+  /* Mobile-only: the "View full portfolio" link sat on the right edge with a
+     cramped tap target and would awkwardly wrap under "Who we back" when the
+     row ran out of space. Stack the header vertically, left-align the link,
+     and give it a comfortable full-row tap height. Desktop unchanged. */
+  .ftHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .ftViewAll {
+    align-self: flex-start;
+    padding: 8px 0;
+    font-size: 0.95rem;
+  }
 }
 /* Keep 2-up even on the smallest phones (single-column tiles were too large
    and made the section feel endless); only fall back to 1 below 360px. */

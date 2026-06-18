@@ -52,6 +52,20 @@ img, svg { display: block; }
   .reveal-d5 { transition-delay: 0.54s; }
 }
 
+/* MOBILE REVEAL FAILSAFE (mobile only — desktop animation untouched).
+   On phones the IntersectionObserver could occasionally miss a section on a
+   fast scroll/initial paint, leaving content (e.g. the "Our Thesis" teaser)
+   blank until a scroll or refresh. On small screens we keep elements visible
+   by default; the `.in` class still applies its end-state when the observer
+   fires, so nothing regresses. The scroll-reveal motion is a desktop nicety. */
+@media (max-width: 720px) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 /* ── HOME: KINETIC HEADLINE + SCROLL-LIT QUOTE ───────── */
 /* These target spans injected at runtime by app/HomeMotion.tsx onto the
    #heroH1 and #tq elements, so they must live in global (non-module) scope.
