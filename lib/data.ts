@@ -117,8 +117,8 @@ export const COMPANIES: Company[] = [
     featured: true,
   },
   {
-    name: 'Scout', slug: slugify('Scout'), cat: 'travel', logo: 'recess.png',
-    logoUrl: '/company-logos/recess.png',
+    name: 'Scout', slug: slugify('Scout'), cat: 'travel', logo: 'scout.png',
+    logoUrl: '/company-logos/scout.png',
     tag: 'AI Shopping Agent',
     desc: 'The first shopping platform where an AI agent buys and sells for you. A personal shopper that remembers everything about you and lets you purchase from millions of businesses in a single cart, while seller-side agents spin multiple listings from a single video and match you with buyers before you have even listed a product.',
     founders: [
