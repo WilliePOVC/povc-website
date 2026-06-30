@@ -117,16 +117,16 @@ export const COMPANIES: Company[] = [
     featured: true,
   },
   {
-    name: 'Recess', slug: slugify('Recess'), cat: 'travel', logo: 'recess.png',
+    name: 'Scout', slug: slugify('Scout'), cat: 'travel', logo: 'recess.png',
     logoUrl: '/company-logos/recess.png',
-    tag: 'AI Parenting Platform',
-    desc: 'A modern online community where parents connect, learn from each other, and buy or sell gently used baby gear in a trusted, parent-vetted marketplace.',
+    tag: 'AI Shopping Agent',
+    desc: 'The first shopping platform where an AI agent buys and sells for you. A personal shopper that remembers everything about you and lets you purchase from millions of businesses in a single cart, while seller-side agents spin multiple listings from a single video and match you with buyers before you have even listed a product.',
     founders: [
       { name: 'Ethan Arpi', url: 'https://www.linkedin.com/in/ethanarpi/' },
       { name: 'Swati Vauthrin', url: 'https://www.linkedin.com/in/swativauthrin' },
     ],
-    website: 'https://therecess.app', stage: 'Pre-Seed',
-    why: 'Targets the massive parenting commerce category by combining community and resale, two of the strongest engagement and retention drivers in consumer, at a moment when secondhand and circular consumption are becoming the default for millennial and Gen Z parents.',
+    website: 'https://shoponscout.com', stage: 'Pre-Seed',
+    why: 'A two-sided agent network creates compounding effects that single-sided assistants like ChatGPT, Perplexity, or Google Shopping cannot replicate, with a sharp wedge in the 3M+ small businesses and long-tail sellers Amazon and Walmart cannot surface. The model is already working: when NeeDoh sold out on Amazon and Walmart, Scout had 23 SKUs across 1,000+ sellers.',
     featured: false,
   },
   {
