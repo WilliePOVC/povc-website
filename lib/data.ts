@@ -346,6 +346,7 @@ export const BLOG_CATS = [
 const MED = 'https://medium.com/@pressonvc/';
 
 export const FALLBACK_BLOG: BlogPost[] = [
+  { title: "People Don't Buy AI, They Buy Better Products", author: 'William Litvack', date: 'Jul 13, 2026', dateISO: '2026-07-13T22:21:00.000Z', cat: 'trends', url: MED + 'people-dont-buy-ai-they-buy-better-products-84c63865de57', excerpt: 'Why the next wave of AI value creation will be in consumer, and the two kinds of founders who will win. Consumers don\u2019t buy AI, they buy better products.' },
   { title: "Why We're Backing Vuelo", author: 'William Litvack', date: 'May 26, 2026', cat: 'portfolio', url: MED + 'why-were-backing-vuelo-a53d14b7d5d4', excerpt: 'An AI-native travel platform that replaces the search bar with an engine embedding a personalized payment plan into every trip recommendation.', logo: '/company-logos/vuelo.png' },
   { title: "Why We're Backing Gato", author: 'Sean Tolkin', date: 'May 20, 2026', cat: 'portfolio', url: MED + 'why-were-backing-gato-092b72066daa', excerpt: 'Dates made from real food, free of refined sugar and the usual shortcuts, the thing you reach for when you want to indulge.', logo: '/company-logos/gato.svg' },
   { title: 'Your Business Needs a Brain Without a Face', author: 'Michael Greenberg', date: 'May 13, 2026', cat: 'tools', url: MED + 'your-business-needs-a-brain-without-a-face-e849872f580d', excerpt: 'Instead of chasing unreliable AI-search tactics, build MCP-based infrastructure that makes your data machine-readable across any AI platform.' },
