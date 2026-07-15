@@ -330,7 +330,7 @@ export const FALLBACK_PRESS_ITEMS: PressItem[] = [
   { pub: 'Silicon Republic', date: 'Jan 2022', dateISO: '2022-01-24', title: 'Snapfix Lands €1.75M', company: 'Snapfix', url: 'https://www.siliconrepublic.com/start-ups/dublin-snapfix-funding-sator-grove-holdings' },
   { pub: 'Silicon Republic', date: 'Jan 2020', dateISO: '2020-01-30', title: 'Paul McCarthy Entrepreneur Award (Snapfix)', company: 'Snapfix', url: 'https://www.siliconrepublic.com/start-ups/snapfix-paul-mccarthy-new-frontiers-lead-entrepreneur-award' },
   { pub: 'LA Business Journal', date: 'Jun 2019', dateISO: '2019-06-16', title: 'Interview with Willie Litvack', company: 'Press On Ventures', url: 'https://labusinessjournal.com/finance/willie-litvack/' },
-  { pub: 'Bird', date: 'Apr 2017', dateISO: '2017-04-01', title: 'Interview with Swati Vauthrin (Recess)', company: 'Recess', url: 'https://www.wearebird.co/swati-vauthrin' },
+  { pub: 'Bird', date: 'Apr 2017', dateISO: '2017-04-01', title: 'Interview with Swati Vauthrin (Recess)', company: 'Scout', url: 'https://www.wearebird.co/swati-vauthrin' },
   { pub: 'Travel Weekly', date: 'Ongoing', title: 'Sean Tolkin — Travel Leadership', company: 'Press On Ventures', url: 'https://www.travelweekly.com/Travel-News/Travel-Agent-Issues/CruiseOne-creates-executive-position-for-land-sales' },
   { pub: 'Entrepreneur', date: 'Ongoing', title: 'Willie Litvack — Entrepreneur Contributions', company: 'Press On Ventures', url: 'https://www.entrepreneur.com/author/william-litvack' },
 ];
