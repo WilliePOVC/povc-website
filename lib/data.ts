@@ -304,6 +304,7 @@ export function pressSortKey(item: PressItem): number {
 }
 
 export const FALLBACK_PRESS_ITEMS: PressItem[] = [
+  { pub: 'Yonkers Times', date: 'Jul 2026', dateISO: '2026-07-28', title: 'First Robot Manicure in New York Arrives in Yonkers', company: '10Beauty', url: 'https://yonkerstimes.com/the-first-robot-manicure-in-new-york-has-arrived-in-yonkers/' },
   { pub: 'Time Out Chicago', date: 'Jul 2026', dateISO: '2026-07-09', title: 'PSA: Robot manicures have landed in Chicago', company: '10Beauty', url: 'https://www.timeout.com/chicago/news/psa-robot-manicures-have-landed-in-chicago-070926' },
   { pub: 'Sifted', date: 'Jun 2026', dateISO: '2026-06-15', title: 'Vuelo named to Sifted Consumer 100 (2026), ranked #100', company: 'Vuelo', url: 'https://sifted.eu/rankings/sifted-consumer-100-2026' },
   { pub: 'WWD', date: 'Jun 2026', dateISO: '2026-06-09', title: '10Beauty Secures $23.5M Funding for Robotic Manicures', company: '10Beauty', url: 'https://wwd.com/beauty-industry-news/beauty-features/10beauty-secures-funding-robotic-manicures-1238985583/' },
