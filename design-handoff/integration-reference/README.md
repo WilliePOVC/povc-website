@@ -21,5 +21,5 @@ investor deck stay in sync from one source of truth. Keep the token server-side.
 Real GP/team/VP headshots pulled from `povc-investor-deck/assets`:
 - `assets/headshots/willie-litvack.png` (was gp1_802x804.png)
 - `assets/headshots/sean-tolkin.jpg` (was gp2_733x1100.jpg)
-- `assets/headshots/{madeline,nikhil,mukul,gagan,gianna,tucker}.png` (full team)
+- `assets/headshots/{madeline,nikhil,mukul,gianna,tucker}.png` (full team)
 - `assets/vp-headshots/{michael-diaz,arthur-leopold,tyler-watson,josh-neckes,hamet-watt,madeleine-macks}.png`

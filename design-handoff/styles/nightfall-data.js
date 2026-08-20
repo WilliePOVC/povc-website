@@ -58,7 +58,6 @@
     { name: 'Madeline Litvack', role: 'Head of Product', tags: 'Duke · Northwestern', past: 'Twitter / X · Apple' },
     { name: 'Nikhil Bhambi', role: 'Venture Associate', tags: 'Northwestern · Claremont McKenna', past: 'National Securities' },
     { name: 'Mukul Anand', role: 'Venture Analyst', tags: 'University of Pennsylvania', past: '' },
-    { name: 'Gagan Chawla', role: 'Fractional CFO', tags: 'UCLA', past: 'Cedars-Sinai · PwC · Ballistic Ventures' },
     { name: 'Gianna Orozco', role: 'Fractional Controller', tags: 'Santa Clara', past: 'Virgin · Claremont Creek' },
     { name: 'Tucker Curtis', role: 'Operations', tags: '', past: 'OpenClaw' }
   ];
