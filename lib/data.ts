@@ -303,6 +303,7 @@ export function pressSortKey(item: PressItem): number {
 }
 
 export const FALLBACK_PRESS_ITEMS: PressItem[] = [
+  { pub: 'VentureFizz', date: 'Aug 2026', dateISO: '2026-08-25', title: 'Discover 10Beauty – The robotics company behind the first full-service robotic manicure', company: '10Beauty', url: 'https://venturefizz.com/insights/discover-10beauty-the-robotics-company-behind-the-first-full-service-robotic-manicure/' },
   { pub: 'Yonkers Times', date: 'Jul 2026', dateISO: '2026-07-28', title: 'First Robot Manicure in New York Arrives in Yonkers', company: '10Beauty', url: 'https://yonkerstimes.com/the-first-robot-manicure-in-new-york-has-arrived-in-yonkers/' },
   { pub: 'Time Out Chicago', date: 'Jul 2026', dateISO: '2026-07-09', title: 'PSA: Robot manicures have landed in Chicago', company: '10Beauty', url: 'https://www.timeout.com/chicago/news/psa-robot-manicures-have-landed-in-chicago-070926' },
   { pub: 'Sifted', date: 'Jun 2026', dateISO: '2026-06-15', title: 'Vuelo named to Sifted Consumer 100 (2026), ranked #100', company: 'Vuelo', url: 'https://sifted.eu/rankings/sifted-consumer-100-2026' },
