@@ -3,15 +3,13 @@ name: Deploy to GitHub Pages
 # presson.vc is a static export, so dynamic content (Notion press, Medium blog,
 # YouTube podcast) is pulled at build time. Rebuild triggers:
 #   • push to main
-#   • hourly: rebuild ONLY if the First Press YouTube feed changed (cheap check)
-#   • daily: unconditional rebuild so Press/Blog pick up Notion/Medium edits
+#   • daily: rebuild so new podcast episodes + Notion/Medium edits go live
 #   • manual: Actions → Deploy to GitHub Pages → Run workflow (e.g. right after publishing)
 
 on:
   push:
     branches: [main]
   schedule:
-    - cron: "7 * * * *"    # hourly podcast check
     - cron: "15 14 * * *"  # daily full rebuild (7:15am PT)
   workflow_dispatch:
 
