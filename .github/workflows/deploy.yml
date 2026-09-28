@@ -1,8 +1,19 @@
 name: Deploy to GitHub Pages
 
+# presson.vc is a static export, so dynamic content (Notion press, Medium blog,
+# YouTube podcast) is pulled at build time. Rebuild triggers:
+#   • push to main
+#   • hourly: rebuild ONLY if the First Press YouTube feed changed (cheap check)
+#   • daily: unconditional rebuild so Press/Blog pick up Notion/Medium edits
+#   • manual: Actions → Deploy to GitHub Pages → Run workflow (e.g. right after publishing)
+
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "7 * * * *"    # hourly podcast check
+    - cron: "15 14 * * *"  # daily full rebuild (7:15am PT)
+  workflow_dispatch:
 
 permissions:
   pages: write
@@ -11,10 +22,34 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
+
+env:
+  YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID || 'UCBZ2His5V_nTxXtBc4cxeUA' }}
+  YOUTUBE_PLAYLIST_ID: ${{ vars.YOUTUBE_PLAYLIST_ID }}
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.decide.outputs.build }}
+    steps:
+      - id: decide
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ] || [ "${{ github.event.schedule }}" = "15 14 * * *" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          PL="${YOUTUBE_PLAYLIST_ID:-UULF${YOUTUBE_CHANNEL_ID#UC}}"
+          FEED=$(curl -fsSL "https://www.youtube.com/feeds/videos.xml?playlist_id=$PL" || true)
+          if [ -z "$FEED" ]; then echo "Feed unreachable; skipping"; echo "build=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          NEW=$(echo "$FEED" | grep -E '<yt:videoId>|<title>|<updated>' | sha256sum | cut -c1-16)
+          LIVE=$(curl -fsSL "https://www.presson.vc/podcast-feed.sha" || echo none)
+          echo "feed=$NEW live=$LIVE"
+          if [ "$NEW" != "$LIVE" ]; then echo "build=true" >> "$GITHUB_OUTPUT"; else echo "build=false" >> "$GITHUB_OUTPUT"; fi
+
   build:
+    needs: check
+    if: needs.check.outputs.build == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,6 +76,15 @@ jobs:
         run: npm run build
         env:
           PAGES: "false"
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+
+      # Fingerprint of the feed this build used, so the hourly check can skip no-op rebuilds.
+      - name: Write podcast feed fingerprint
+        run: |
+          PL="${YOUTUBE_PLAYLIST_ID:-UULF${YOUTUBE_CHANNEL_ID#UC}}"
+          curl -fsSL "https://www.youtube.com/feeds/videos.xml?playlist_id=$PL" \
+            | grep -E '<yt:videoId>|<title>|<updated>' | sha256sum | cut -c1-16 > out/podcast-feed.sha || true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
