@@ -7,6 +7,15 @@ import type { Episode } from '@/lib/podcast/types';
 type Props = { ep: Episode; size?: 'sm' | 'md' | 'lg' | 'xl'; variant?: Episode['tileVariant']; children?: React.ReactNode };
 
 export default function EpisodeTile({ ep, size = 'md', variant, children }: Props) {
+  if (PODCAST.tileMode === 'youtube' && ep.youtubeThumb) {
+    return (
+      <div className={`${s.tile} ${s.tileThumb}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={ep.youtubeThumb} alt="" className={s.thumbImg} loading={size === 'sm' ? 'lazy' : 'eager'} />
+        {children}
+      </div>
+    );
+  }
   const v = variant ?? ep.tileVariant;
   const guestLine = ep.guest ? [ep.guest.name, ep.guest.role?.split(',').pop()?.trim()].filter(Boolean).join(' · ') : null;
   return (

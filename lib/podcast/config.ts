@@ -13,6 +13,8 @@ export const PODCAST = {
     apple: '',
     rss: '', // audio-host podcast RSS, if any
   },
+  // 'youtube' = use each video's YouTube thumbnail (title card); 'branded' = generated number tiles
+  tileMode: 'youtube' as 'youtube' | 'branded',
   pitchEmail: 'getintouch@presson.vc',
   topics: TOPICS,
   episodeMinSeconds: 180,
