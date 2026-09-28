@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Team', href: '/team' },
   { label: 'Thesis', href: '/thesis' },
+  { label: 'Podcast', href: '/podcast' },
   { label: 'Press', href: '/press' },
   { label: 'Blog', href: '/blog' },
 ];
