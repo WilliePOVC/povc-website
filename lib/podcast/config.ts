@@ -9,7 +9,7 @@ export const PODCAST = {
     'Conversations with resilient founders building transformative consumer businesses across health, well-being, and experiences.',
   listen: {
     youtube: `https://www.youtube.com/channel/${CHANNEL_ID}?sub_confirmation=1`,
-    spotify: '', // empty → pill hidden
+    spotify: 'https://open.spotify.com/show/58n8UK1qjktL5t3sNAzVzr',
     apple: '',
     rss: '', // audio-host podcast RSS, if any
   },
