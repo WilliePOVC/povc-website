@@ -10,7 +10,8 @@ export const PODCAST = {
   listen: {
     youtube: `https://www.youtube.com/channel/${CHANNEL_ID}?sub_confirmation=1`,
     spotify: 'https://open.spotify.com/show/58n8UK1qjktL5t3sNAzVzr',
-    apple: '',
+    apple: 'https://podcasts.apple.com/us/podcast/first-press-by-press-on-ventures/id6815350094',
+    tiktok: 'https://www.tiktok.com/@firstpress_povc',
     rss: '', // audio-host podcast RSS, if any
   },
   // 'youtube' = use each video's YouTube thumbnail (title card); 'branded' = generated number tiles

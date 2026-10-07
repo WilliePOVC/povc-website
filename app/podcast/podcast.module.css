@@ -183,7 +183,7 @@ a.card:hover .cardTileWrap { transform: translateY(-4px); box-shadow: var(--shad
   .hero { padding: 112px 0 64px; }
   .heroTitle { font-size: 60px; }
   .subscribe { width: 100%; }
-  .subPills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+  .subPills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
   .featured { padding: 12px; border-radius: var(--radius-2xl); }
   .playCorner { width: 64px; height: 64px; right: 14px; bottom: 14px; }
   .playCenter { width: 72px; height: 72px; }

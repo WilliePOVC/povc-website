@@ -10,6 +10,9 @@ export const SpotifyIcon = () => (
 export const AppleIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-3 15.4v-2.2a6 6 0 1 1 6 0v2.2A8 8 0 0 0 12 2zm0 5a3 3 0 0 0-1.5 5.6V14h3v-1.4A3 3 0 0 0 12 7zm-1.5 8.5L11 22h2l.5-6.5z"/></svg>
 );
+export const TikTokIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 2h-3.4v13.4a3 3 0 1 1-2.6-3V9a6.4 6.4 0 1 0 6 6.4V8.6a8 8 0 0 0 4.4 1.4V6.6A4.6 4.6 0 0 1 16.6 2z"/></svg>
+);
 export const RssIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4v3a13 13 0 0 1 13 13h3A16 16 0 0 0 4 4zm0 6v3a7 7 0 0 1 7 7h3A10 10 0 0 0 4 10zm2.5 7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg>
 );

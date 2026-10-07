@@ -12,7 +12,7 @@ import YouTubeFacade from '@/components/podcast/YouTubeFacade';
 import ChapterList from '@/components/podcast/ChapterList';
 import ShareRow from '@/components/podcast/ShareRow';
 import EpisodeCard from '@/components/podcast/EpisodeCard';
-import { YouTubeIcon, SpotifyIcon, AppleIcon } from '@/components/podcast/icons';
+import { YouTubeIcon, SpotifyIcon, AppleIcon, TikTokIcon } from '@/components/podcast/icons';
 
 // Static export: every episode page is generated at build time.
 export const dynamicParams = false;
@@ -117,6 +117,7 @@ export default async function EpisodePage({ params }: Params) {
               <a href={`https://youtu.be/${ep.videoId}`} target="_blank" rel="noopener noreferrer" className={s.listenDark}><YouTubeIcon />YouTube</a>
               {PODCAST.listen.spotify && <a href={PODCAST.listen.spotify} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><SpotifyIcon />Spotify</a>}
               {PODCAST.listen.apple && <a href={PODCAST.listen.apple} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><AppleIcon />Apple Podcasts</a>}
+              {PODCAST.listen.tiktok && <a href={PODCAST.listen.tiktok} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><TikTokIcon />TikTok</a>}
             </div>
             <ShareRow url={url} title={`${ep.title} | ${PODCAST.name}`} />
           </aside>
