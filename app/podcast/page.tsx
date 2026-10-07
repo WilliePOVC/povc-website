@@ -18,7 +18,8 @@ export const metadata: Metadata = {
 
 export default async function PodcastPage() {
   const [published, upcoming] = await Promise.all([getPublished(), getUpcoming()]);
-  const [featured, ...rest] = published;
+  const featured = published.find((e) => e.videoId === PODCAST.featuredVideoId) ?? published[0];
+  const rest = published.filter((e) => e !== featured);
   const jsonLd = {
     '@context': 'https://schema.org', '@type': 'PodcastSeries', name: PODCAST.name,
     url: `${PODCAST.siteUrl}/podcast`, author: { '@type': 'Organization', name: 'Press On Ventures' },
@@ -40,10 +41,10 @@ export default async function PodcastPage() {
 
           {featured ? (
             <div className={`${s.featured} reveal`}>
-              <YouTubeFacade ep={featured} size="lg" badge="New" className={s.featuredPlayer} />
+              <YouTubeFacade ep={featured} size="lg" badge={featured === published[0] ? 'New' : undefined} className={s.featuredPlayer} />
               <div className={s.featuredText}>
                 <div className={s.eyebrowBeige}>
-                  {['Latest episode', fmtDate(featured.publishedAt), fmtMin(featured.durationSec)].filter(Boolean).join(' · ')}
+                  {[featured === published[0] ? 'Latest episode' : 'Featured episode', fmtDate(featured.publishedAt), fmtMin(featured.durationSec)].filter(Boolean).join(' · ')}
                 </div>
                 <h2 className={s.featuredTitle}>{featured.title}</h2>
                 {featured.summary[0] && <p className={s.featuredSummary}>{featured.summary[0]}</p>}

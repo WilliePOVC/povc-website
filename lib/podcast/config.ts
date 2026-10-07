@@ -16,6 +16,8 @@ export const PODCAST = {
   },
   // 'youtube' = use each video's YouTube thumbnail (title card); 'branded' = generated number tiles
   tileMode: 'youtube' as 'youtube' | 'branded',
+  // Pin a specific episode as the hub's featured episode (YouTube videoId). '' = newest episode.
+  featuredVideoId: 'yPCRd2nWH_Q', // Ep. 01 — Ethan Arpi (Scout)
   pitchEmail: 'getintouch@presson.vc',
   topics: TOPICS,
   episodeMinSeconds: 180,
