@@ -8,7 +8,7 @@ export default function SubscribeLinks() {
     <div className={s.subscribe}>
       <div className={s.subEyebrow}>Listen &amp; Subscribe</div>
       <div className={s.subPills}>
-        <a href={l.youtube} target="_blank" rel="noopener noreferrer" className={`${s.pill} ${s.pillWhite}`}><YouTubeIcon />YouTube</a>
+        <a href={l.youtube} target="_blank" rel="noopener noreferrer" className={s.pill}><YouTubeIcon />YouTube</a>
         {l.spotify && <a href={l.spotify} target="_blank" rel="noopener noreferrer" className={s.pill}><SpotifyIcon />Spotify</a>}
         {l.apple && <a href={l.apple} target="_blank" rel="noopener noreferrer" className={s.pill}><AppleIcon />Apple Podcasts</a>}
         {l.tiktok && <a href={l.tiktok} target="_blank" rel="noopener noreferrer" className={s.pill}><TikTokIcon />TikTok</a>}

@@ -34,12 +34,14 @@
 .heroRow { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
 .heroTitle {
   font-family: var(--font-heading); font-weight: 700; font-size: clamp(3.75rem, 8vw, 7rem);
-  line-height: .95; letter-spacing: -0.045em; margin: 18px 0 22px;
+  line-height: .95; letter-spacing: -0.045em; margin: 18px 0 22px; white-space: nowrap;
 }
+.heroRow > div:first-child { min-width: 0; }
 .heroBlurb { font-size: 18px; line-height: 1.6; color: var(--fg-on-dark-2); max-width: 600px; }
 .subscribe { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
 .subEyebrow { color: var(--fg-on-dark-3); }
-.subPills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.subPills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; min-width: 380px; }
+.subPills > a { width: 100%; padding: 0 16px; }
 
 .featured {
   margin-top: 64px; background: var(--surface-dark); border: 1px solid var(--border-on-dark-1);
@@ -177,13 +179,12 @@ a.card:hover .cardTileWrap { transform: translateY(-4px); box-shadow: var(--shad
   .epCols { grid-template-columns: 1fr; gap: 48px; }
   .heroRow { flex-direction: column; align-items: flex-start; }
   .subscribe { align-items: flex-start; }
-  .subPills { justify-content: flex-start; }
 }
 @media (max-width: 640px) {
   .hero { padding: 112px 0 64px; }
   .heroTitle { font-size: 60px; }
   .subscribe { width: 100%; }
-  .subPills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .subPills { min-width: 0; width: 100%; }
   .featured { padding: 12px; border-radius: var(--radius-2xl); }
   .playCorner { width: 64px; height: 64px; right: 14px; bottom: 14px; }
   .playCenter { width: 72px; height: 72px; }
