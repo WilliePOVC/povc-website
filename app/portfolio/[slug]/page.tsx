@@ -11,7 +11,7 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Static generation for all 12 companies
+// Static generation for all portfolio companies
 export async function generateStaticParams() {
   return COMPANIES.map((c) => ({ slug: c.slug }));
 }

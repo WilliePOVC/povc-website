@@ -104,6 +104,19 @@ export const COMPANIES: Company[] = [
     featured: false,
   },
   {
+    name: 'Helix.ID', slug: 'helix', cat: 'travel', logo: 'helix.png',
+    logoUrl: '/company-logos/helix.png',
+    tag: 'Privacy-First Human Verification',
+    desc: 'A single two-second voice check replaces CAPTCHA, SMS one-time passcodes, and ID or selfie scans, confirming a user is a live human, the same person who owns the account, and old enough, with all processing on-device so no biometric or personal data ever leaves the user\'s phone.',
+    founders: [
+      { name: 'Alex Oberg', url: 'https://www.linkedin.com/in/alexoberg/' },
+      { name: 'Anna Dorofiyenko', url: 'https://www.linkedin.com/in/annador' },
+    ],
+    website: 'https://helix.id', stage: 'Seed+',
+    why: 'Founded by Alex Oberg (built Ticketmaster\'s Verified Fan, 100M+ transactions processed) with a team from Tinder, Zillow, and Live Nation; already independently certified at the "Highly Effective" level under ISO/IEC 27566 ahead of New York\'s January 2027 SAFE for Kids Act deadline, with five signed design-partner pilots covering ~140M monthly active users and channel partnerships with GeoComply and Segpay in regulated verticals.',
+    featured: true,
+  },
+  {
     name: 'Magic Story', slug: slugify('Magic Story'), cat: 'travel', logo: 'magicstory.png',
     logoUrl: '/company-logos/magicstory.png',
     tag: 'AI-Personalized Kids Content',
@@ -177,7 +190,7 @@ export const COMPANIES: Company[] = [
     ],
     website: 'https://getvuelo.com/uk/', stage: 'Seed',
     why: 'Founded by Jasper Dykes (ex-CEO, Fly Now Pay Later), FCA-authorized, and already onboarding thousands of new travelers each month. Raised £56M in seed (Backed VC, Play Ventures, Viola Credit) to capture the most underserved slice of a BNPL category projected to grow from $342B to $580B by 2030.',
-    featured: true,
+    featured: false,
   },
 ];
 
