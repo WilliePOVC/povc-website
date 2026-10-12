@@ -41,7 +41,8 @@ export default async function PodcastPage() {
 
           {featured ? (
             <div className={`${s.featured} reveal`}>
-              <YouTubeFacade ep={featured} size="lg" badge={featured === published[0] ? 'New' : undefined} className={s.featuredPlayer} />
+              {featured === published[0] && <span className={s.tileBadge}>New</span>}
+              <YouTubeFacade ep={featured} size="lg" className={s.featuredPlayer} />
               <div className={s.featuredText}>
                 <div className={s.eyebrowBeige}>
                   {[featured === published[0] ? 'Latest episode' : 'Featured episode', fmtDate(featured.publishedAt), fmtMin(featured.durationSec)].filter(Boolean).join(' · ')}
