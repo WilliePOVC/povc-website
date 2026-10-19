@@ -25,6 +25,7 @@ const CAT_OVERRIDES: Record<string, string> = {
 
 // Company logo map keyed by URL slug fragment
 const LOGO_MAP: Record<string, string> = {
+  'why-were-backing-helix': '/company-logos/helix.png',
   'why-were-backing-vuelo': '/company-logos/vuelo.png',
   'why-were-backing-gato': '/company-logos/gato.svg',
   'why-were-backing-magic-story': '/company-logos/magicstory.png',
@@ -147,6 +148,9 @@ function parseItems(xml: string): BlogPost[] {
 
 // Normalize a Medium URL to its slug-id so the same post from the live feed and
 // the curated archive dedupe cleanly (strip query params and trailing slashes).
+// Featured blog post pin (Medium slug-id, lowercase).
+const PINNED_FEATURED_SLUG = 'people-dont-buy-ai-they-buy-better-products-84c63865de57';
+
 function urlKey(url: string): string {
   return url
     .replace(/[?#].*$/, '')
@@ -185,7 +189,13 @@ function mergeWithArchive(feed: BlogPost[]): BlogPost[] {
     return a.i - b.i;
   });
 
-  return withOrder.map((x) => x.p);
+  const merged = withOrder.map((x) => x.p);
+  // Pin the blog's featured (top) post regardless of date. '' = newest post.
+  if (PINNED_FEATURED_SLUG) {
+    const idx = merged.findIndex((p) => urlKey(p.url) === PINNED_FEATURED_SLUG);
+    if (idx > 0) merged.unshift(merged.splice(idx, 1)[0]);
+  }
+  return merged;
 }
 
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
