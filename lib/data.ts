@@ -317,6 +317,7 @@ export function pressSortKey(item: PressItem): number {
 }
 
 export const FALLBACK_PRESS_ITEMS: PressItem[] = [
+  { pub: 'Fitt Insider', date: 'Oct 2026', dateISO: '2026-10-21', title: "Cofertility's Frozen Egg Donation Program Joins Progyny Network", company: 'Cofertility', url: 'https://insider.fitt.co/press-release/cofertilitys-frozen-egg-donation-program-joins-progyny-network-expanding-access-to-egg-donation-through-employer-sponsored-fertility-benefits/' },
   { pub: 'Authority Magazine', date: 'Oct 2026', dateISO: '2026-10-01', title: 'The Future Is Now: Mike Greene of SKYLARK', company: 'Skylark', url: 'https://medium.com/authority-magazine/the-future-is-now-mike-greene-of-skylark-on-how-their-technological-innovations-will-shake-up-the-a7fbf898298c' },
   { pub: 'VentureFizz', date: 'Aug 2026', dateISO: '2026-08-25', title: 'Discover 10Beauty – The robotics company behind the first full-service robotic manicure', company: '10Beauty', url: 'https://venturefizz.com/insights/discover-10beauty-the-robotics-company-behind-the-first-full-service-robotic-manicure/' },
   { pub: 'Yonkers Times', date: 'Jul 2026', dateISO: '2026-07-28', title: 'First Robot Manicure in New York Arrives in Yonkers', company: '10Beauty', url: 'https://yonkerstimes.com/the-first-robot-manicure-in-new-york-has-arrived-in-yonkers/' },
