@@ -109,7 +109,7 @@ export const COMPANIES: Company[] = [
     tag: 'Privacy-First Human Verification',
     desc: 'A single two-second voice check replaces CAPTCHA, SMS one-time passcodes, and ID or selfie scans, confirming a user is a live human, the same person who owns the account, and old enough, with all processing on-device so no biometric or personal data ever leaves the user\'s phone.',
     founders: [
-      { name: 'Alex Oberg', url: 'https://www.linkedin.com/in/alexoberg/' },
+      { name: 'Alex Oberg', url: 'https://www.linkedin.com/in/alex-oberg-71ba6966/' },
       { name: 'Anna Dorofiyenko', url: 'https://www.linkedin.com/in/annador' },
     ],
     website: 'https://helix.id', stage: 'Seed+',
