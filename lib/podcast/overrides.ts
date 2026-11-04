@@ -11,4 +11,6 @@ export const OVERRIDES: Record<string, Partial<Episode>> = {
   },
   // Ep. 02 — sunscreen category deep dive, hosted by Madeline Litvack & Josh Neckes
   H7JmPiBCZG0: { topic: 'Thesis' },
+  // Ep. 04 — Willie Litvack on building and investing at Press On Ventures (added by Madeline 2026-11-04)
+  a7iTuJGYkQA: { topic: 'Thesis', guest: { name: 'William Litvack', role: 'Founder & Managing Partner, Press On Ventures' } },
 };

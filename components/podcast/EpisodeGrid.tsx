@@ -7,9 +7,9 @@ import type { Episode, Topic } from '@/lib/podcast/types';
 
 const PAGE = 9;
 
-export default function EpisodeGrid({ episodes, upcoming }: { episodes: Episode[]; upcoming: Episode[] }) {
+export default function EpisodeGrid({ episodes, upcoming, featured }: { episodes: Episode[]; upcoming: Episode[]; featured?: Episode }) {
   const all = useMemo(() => [...upcoming, ...episodes], [upcoming, episodes]);
-  const topics = PODCAST.topics.filter((t) => all.some((e) => e.topic === t));
+  const topics = PODCAST.topics.filter((t) => all.some((e) => e.topic === t) || featured?.topic === t);
   const [topic, setTopic] = useState<Topic | null>(null);
   const [shown, setShown] = useState(PAGE);
 
@@ -29,7 +29,10 @@ export default function EpisodeGrid({ episodes, upcoming }: { episodes: Episode[
     window.history.replaceState(null, '', url.toString());
   }
 
-  const filtered = topic ? all.filter((e) => e.topic === topic) : all;
+  // "All" omits the featured episode (it has its own hero tile above). A topic tab lists it first.
+  const filtered = topic
+    ? [...(featured && featured.topic === topic ? [featured] : []), ...all.filter((e) => e.topic === topic)]
+    : all;
 
   return (
     <>

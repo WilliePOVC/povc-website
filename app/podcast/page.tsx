@@ -72,7 +72,7 @@ export default async function PodcastPage() {
               <a href={PODCAST.listen.youtube} target="_blank" rel="noopener noreferrer" className={s.darkPill}><YouTubeIcon />Subscribe on YouTube</a>
             </div>
           ) : (
-            <EpisodeGrid episodes={rest} upcoming={upcoming} />
+            <EpisodeGrid episodes={rest} upcoming={upcoming} featured={featured} />
           )}
         </div>
       </section>
