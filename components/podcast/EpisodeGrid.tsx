@@ -29,10 +29,9 @@ export default function EpisodeGrid({ episodes, upcoming, featured }: { episodes
     window.history.replaceState(null, '', url.toString());
   }
 
-  // "All" omits the featured episode (it has its own hero tile above). A topic tab lists it first.
-  const filtered = topic
-    ? [...(featured && featured.topic === topic ? [featured] : []), ...all.filter((e) => e.topic === topic)]
-    : all;
+  // The featured episode (hero tile above) is also listed first in "All" and in its topic tab.
+  const withFeatured = featured ? [featured, ...all] : all;
+  const filtered = topic ? withFeatured.filter((e) => e.topic === topic) : withFeatured;
 
   return (
     <>
