@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import s from '../podcast.module.css';
 import { getPublished, getEpisodeBySlug } from '@/lib/podcast/youtube';
 import { PODCAST } from '@/lib/podcast/config';
+import { EPISODE_LINKS } from '@/lib/podcast/links';
 import { fmtDate, fmtMin, pad2 } from '@/lib/podcast/format';
 import { toIsoDuration } from '@/lib/podcast/parse';
 import { getCompany } from '@/lib/data';
@@ -46,6 +47,8 @@ export default async function EpisodePage({ params }: Params) {
   const more = all.filter((e) => e.videoId !== ep.videoId).slice(0, 3);
   const company = ep.portfolioSlug ? getCompany(ep.portfolioSlug) : null;
   const url = `${PODCAST.siteUrl}/podcast/${ep.slug}`;
+  const spotifyUrl = EPISODE_LINKS[ep.videoId]?.spotify || PODCAST.listen.spotify;
+  const appleUrl = EPISODE_LINKS[ep.videoId]?.apple || PODCAST.listen.apple;
   const meta = [`Episode ${pad2(ep.number)}`, fmtDate(ep.publishedAt), fmtMin(ep.durationSec), ep.topic].filter(Boolean).join(' · ');
 
   const jsonLd = [
@@ -114,8 +117,8 @@ export default async function EpisodePage({ params }: Params) {
             <div className={s.listenCard}>
               <div className={s.eyebrowLight}>Listen on</div>
               <a href={`https://youtu.be/${ep.videoId}`} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><YouTubeIcon />YouTube</a>
-              {PODCAST.listen.spotify && <a href={PODCAST.listen.spotify} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><SpotifyIcon />Spotify</a>}
-              {PODCAST.listen.apple && <a href={PODCAST.listen.apple} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><AppleIcon />Apple Podcasts</a>}
+              {spotifyUrl && <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><SpotifyIcon />Spotify</a>}
+              {appleUrl && <a href={appleUrl} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><AppleIcon />Apple Podcasts</a>}
               {PODCAST.listen.tiktok && <a href={PODCAST.listen.tiktok} target="_blank" rel="noopener noreferrer" className={s.listenOutline}><TikTokIcon />TikTok</a>}
             </div>
           </aside>
