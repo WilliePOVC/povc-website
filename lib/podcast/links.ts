@@ -14,6 +14,6 @@ export const EPISODE_LINKS: Record<string, { spotify?: string; apple?: string }>
   },
   a7iTuJGYkQA: {
     spotify: 'https://open.spotify.com/episode/3fXA2LcEMmaeMnSyV8FvfP',
-    apple: 'https://podcasts.apple.com/us/podcast/willie-litvack-on-building-and-investing-at-press-on/id6815350094?i=1000799858805',
+    apple: 'https://podcasts.apple.com/us/podcast/willie-litvack-on-building-and-investing-at-press-on/id6815350094?i=1000800116277',
   },
 };
