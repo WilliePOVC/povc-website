@@ -1,6 +1,8 @@
 // Build-time YouTube sync. The site is a static export on GitHub Pages, so this runs
 // during `next build`; the deploy workflow rebuilds when the channel feed changes.
 import { cache } from 'react';
+import { readFileSync, existsSync } from 'fs';
+import path from 'path';
 import type { Episode } from './types';
 import { PODCAST, CHANNEL_ID } from './config';
 import { OVERRIDES } from './overrides';
@@ -69,14 +71,23 @@ async function fromRss(): Promise<Raw[]> {
   const url = `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ENV || LONGFORM}`;
   // YouTube's RSS endpoint intermittently returns 404/500 to CI runners; retry with backoff.
   let res: Response | null = null;
-  for (let attempt = 1; attempt <= 6; attempt++) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
     res = await fetch(url, { cache: 'force-cache' }).catch(() => null);
     if (res?.ok) break;
     console.warn(`[podcast] YouTube RSS attempt ${attempt} failed (${res?.status ?? 'network'})`);
-    if (attempt < 6) await new Promise((r) => setTimeout(r, attempt * 5000));
+    if (attempt < 3) await new Promise((r) => setTimeout(r, attempt * 5000));
   }
-  if (!res?.ok) throw new Error(`YouTube RSS ${res?.status ?? 'network error'}`);
-  return parseRss(await res.text()).map((e) => ({
+  let xml: string;
+  if (res?.ok) {
+    xml = await res.text();
+  } else {
+    // YouTube blocks some CI IPs. Fall back to the committed snapshot (refresh: scripts/snapshot-podcast-feed.sh).
+    const snap = path.join(process.cwd(), 'lib/podcast/feed-snapshot.xml');
+    if (!existsSync(snap)) throw new Error(`YouTube RSS ${res?.status ?? 'network error'} and no snapshot`);
+    console.warn('[podcast] YouTube RSS unavailable; using lib/podcast/feed-snapshot.xml');
+    xml = readFileSync(snap, 'utf8');
+  }
+  return parseRss(xml).map((e) => ({
     id: e.videoId, title: e.title, description: e.description, publishedAt: e.publishedAt,
     thumb: `https://i.ytimg.com/vi/${e.videoId}/maxresdefault.jpg`, durationSec: null, upcoming: false,
   }));

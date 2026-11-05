@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?playlist_id=UULFBZ2His5V_nTxXtBc4cxeUA"/>
+ <id>yt:playlist:UULFBZ2His5V_nTxXtBc4cxeUA</id>
+ <yt:playlistId>UULFBZ2His5V_nTxXtBc4cxeUA</yt:playlistId>
+ <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
+ <title>Videos</title>
+ <author>
+  <name>First Press by Press On Ventures</name>
+  <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
+ </author>
+ <published>2026-09-23T17:44:15+00:00</published>
+ <entry>
+  <id>yt:video:a7iTuJGYkQA</id>
+  <yt:videoId>a7iTuJGYkQA</yt:videoId>
+  <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
+  <title>Willie Litvack on Building and Investing at Press On Ventures | First Press Ep. 04</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=a7iTuJGYkQA"/>
+  <author>
+   <name>First Press by Press On Ventures</name>
+   <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
+  </author>
+  <published>2026-11-04T20:01:59+00:00</published>
+  <updated>2026-11-05T22:26:14+00:00</updated>
+  <media:group>
+   <media:title>Willie Litvack on Building and Investing at Press On Ventures | First Press Ep. 04</media:title>
+   <media:content url="https://www.youtube.com/v/a7iTuJGYkQA?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/a7iTuJGYkQA/hqdefault.jpg" width="480" height="360"/>
+   <media:description>On this episode of First Press, a Press On Ventures podcast, Madeline Litvack and Josh Neckes sit down with William Litvack, founder of Press On Ventures, to talk about his journey as a founder and investor, the thinking behind building an operator-led venture firm, and what it takes to back the next generation of consumer brands.
+
+Learn more about Press On Ventures: https://presson.vc
+
+First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
+   <media:community>
+    <media:starRating count="2" average="5.00" min="1" max="5"/>
+    <media:statistics views="16"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:xf7NtIhOOBU</id>
+  <yt:videoId>xf7NtIhOOBU</yt:videoId>
+  <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
+  <title>Building with Purpose with Cofertility CEO Lauren Makler | First Press Ep. 03</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=xf7NtIhOOBU"/>
+  <author>
+   <name>First Press by Press On Ventures</name>
+   <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
+  </author>
+  <published>2026-10-12T18:50:41+00:00</published>
+  <updated>2026-10-15T20:08:25+00:00</updated>
+  <media:group>
+   <media:title>Building with Purpose with Cofertility CEO Lauren Makler | First Press Ep. 03</media:title>
+   <media:content url="https://www.youtube.com/v/xf7NtIhOOBU?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/xf7NtIhOOBU/hqdefault.jpg" width="480" height="360"/>
+   <media:description>What does it take to build a company around one of the most personal decisions people make?
+
+On this episode of First Press, a Press On Ventures podcast, Madeline Litvack and Josh Neckes sit down with Lauren Makler, co-founder and CEO of Cofertility, to talk about building with purpose. They cover why Lauren started Cofertility, how mission shapes product and growth decisions, and what it takes to earn trust in fertility care.
+
+Learn more about Cofertility: https://www.cofertility.com
+Learn more about Press On Ventures: https://presson.vc
+
+Cofertility is a Press On Ventures portfolio company.
+
+First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
+   <media:community>
+    <media:starRating count="2" average="5.00" min="1" max="5"/>
+    <media:statistics views="46"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:H7JmPiBCZG0</id>
+  <yt:videoId>H7JmPiBCZG0</yt:videoId>
+  <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
+  <title>Sunscreen as Everyday Skincare | First Press Ep. 02</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=H7JmPiBCZG0"/>
+  <author>
+   <name>First Press by Press On Ventures</name>
+   <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
+  </author>
+  <published>2026-09-23T18:17:05+00:00</published>
+  <updated>2026-10-24T14:41:18+00:00</updated>
+  <media:group>
+   <media:title>Sunscreen as Everyday Skincare | First Press Ep. 02</media:title>
+   <media:content url="https://www.youtube.com/v/H7JmPiBCZG0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/H7JmPiBCZG0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Sunscreen used to live in the beach bag. Now it's a daily skincare step.
+
+On this episode of First Press, a Press On Ventures podcast, Madeline Litvack and Josh Neckes break down the sunscreen category: how it moved from seasonal to everyday, the problems legacy products never solved, the new brands reshaping the shelf, and what makes a sunscreen brand defensible.
+
+Learn more about Press On Ventures: https://presson.vc
+
+First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
+   <media:community>
+    <media:starRating count="2" average="5.00" min="1" max="5"/>
+    <media:statistics views="25"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:yPCRd2nWH_Q</id>
+  <yt:videoId>yPCRd2nWH_Q</yt:videoId>
+  <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
+  <title>Agentic Shopping with Scout CEO Ethan Arpi | First Press Ep. 01</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=yPCRd2nWH_Q"/>
+  <author>
+   <name>First Press by Press On Ventures</name>
+   <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
+  </author>
+  <published>2026-09-23T17:44:14+00:00</published>
+  <updated>2026-10-24T14:36:58+00:00</updated>
+  <media:group>
+   <media:title>Agentic Shopping with Scout CEO Ethan Arpi | First Press Ep. 01</media:title>
+   <media:content url="https://www.youtube.com/v/yPCRd2nWH_Q?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/yPCRd2nWH_Q/hqdefault.jpg" width="480" height="360"/>
+   <media:description>AI agents are starting to shop on our behalf. What does that mean for brands, retailers, and the way consumers discover products?
+
+On the first episode of First Press, a Press On Ventures podcast, Madeline Litvack and Josh Neckes sit down with Ethan Arpi, CEO of Scout, to talk about agentic commerce: how it works today, where it's headed, and what brands need to get right to show up when an agent is doing the buying.
+
+Learn more about Scout: https://shoponscout.com
+Learn more about Press On Ventures: https://presson.vc
+
+First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
+   <media:community>
+    <media:starRating count="5" average="5.00" min="1" max="5"/>
+    <media:statistics views="103"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>
