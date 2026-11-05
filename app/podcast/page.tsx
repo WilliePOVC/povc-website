@@ -51,7 +51,7 @@ export default async function PodcastPage() {
                 {featured.summary[0] && <p className={s.featuredSummary}>{featured.summary[0]}</p>}
                 <div className={s.featuredBtns}>
                   <Link href={`/podcast/${featured.slug}`} className={`btn-beige ${s.btnTall}`}><PlayIcon />Watch episode</Link>
-                  <Link href={`/podcast/${featured.slug}#notes`} className={s.pill}>Show notes <ArrowUpRight /></Link>
+                  <Link href={`/podcast/${featured.slug}`} className={s.pill}>Show notes <ArrowUpRight /></Link>
                 </div>
               </div>
             </div>
