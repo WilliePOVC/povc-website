@@ -18,7 +18,7 @@ export const OVERRIDES: Record<string, Partial<Episode>> = {
     portfolioSlug: 'cofertility',
   },
   // Ep. 05 — AEO deep dive with Jake Makler
-  islpUulylHQ: { topic: 'Thesis', guest: { name: 'Jake Makler' } },
+  islpUulylHQ: { topic: 'Founders', guest: { name: 'Jake Makler' } },
   // Ep. 04 — Willie Litvack on building and investing at Press On Ventures (added by Madeline 2026-11-04)
   a7iTuJGYkQA: { topic: 'Thesis', guest: { name: 'William Litvack', role: 'Founder & Managing Partner, Press On Ventures' } },
 };
