@@ -11,6 +11,35 @@
  </author>
  <published>2026-09-23T17:44:15+00:00</published>
  <entry>
+  <id>yt:video:islpUulylHQ</id>
+  <yt:videoId>islpUulylHQ</yt:videoId>
+  <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
+  <title>The AEO Playbook with Jake Makler | First Press Ep. 05</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=islpUulylHQ"/>
+  <author>
+   <name>First Press by Press On Ventures</name>
+   <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
+  </author>
+  <published>2026-11-09T17:28:23+00:00</published>
+  <updated>2026-11-09T17:55:54+00:00</updated>
+  <media:group>
+   <media:title>The AEO Playbook with Jake Makler | First Press Ep. 05</media:title>
+   <media:content url="https://www.youtube.com/v/islpUulylHQ?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/islpUulylHQ/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Search is changing. As AI reshapes how consumers discover brands, Answer Engine Optimization (AEO) is becoming an increasingly important part of the marketing playbook.
+
+On this episode of First Press, a Press On Ventures podcast, Madeline Litvack and Josh Neckes sit down with Jake Makler to break down AEO: what it is, how it differs from traditional SEO, how AI-powered search is changing consumer discovery, and what brands should be doing now to stay visible and relevant.
+
+Learn more about Press On Ventures: https://presson.vc
+
+First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
+   <media:community>
+    <media:starRating count="1" average="5.00" min="1" max="5"/>
+    <media:statistics views="1"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
   <id>yt:video:a7iTuJGYkQA</id>
   <yt:videoId>a7iTuJGYkQA</yt:videoId>
   <yt:channelId>UCBZ2His5V_nTxXtBc4cxeUA</yt:channelId>
@@ -21,7 +50,7 @@
    <uri>https://www.youtube.com/channel/UCBZ2His5V_nTxXtBc4cxeUA</uri>
   </author>
   <published>2026-11-04T20:01:59+00:00</published>
-  <updated>2026-11-05T22:26:14+00:00</updated>
+  <updated>2026-11-06T16:23:51+00:00</updated>
   <media:group>
    <media:title>Willie Litvack on Building and Investing at Press On Ventures | First Press Ep. 04</media:title>
    <media:content url="https://www.youtube.com/v/a7iTuJGYkQA?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
@@ -33,7 +62,7 @@ Learn more about Press On Ventures: https://presson.vc
 First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
    <media:community>
     <media:starRating count="2" average="5.00" min="1" max="5"/>
-    <media:statistics views="16"/>
+    <media:statistics views="77"/>
    </media:community>
   </media:group>
  </entry>
@@ -94,7 +123,7 @@ Learn more about Press On Ventures: https://presson.vc
 First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
    <media:community>
     <media:starRating count="2" average="5.00" min="1" max="5"/>
-    <media:statistics views="25"/>
+    <media:statistics views="26"/>
    </media:community>
   </media:group>
  </entry>
@@ -124,7 +153,7 @@ Learn more about Press On Ventures: https://presson.vc
 First Press is a video podcast from Press On Ventures, an operator-led early-stage fund investing in consumer brands. Each episode features founders, operators, and category deep dives on where consumer is going next.</media:description>
    <media:community>
     <media:starRating count="5" average="5.00" min="1" max="5"/>
-    <media:statistics views="103"/>
+    <media:statistics views="104"/>
    </media:community>
   </media:group>
  </entry>

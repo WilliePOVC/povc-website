@@ -16,4 +16,8 @@ export const EPISODE_LINKS: Record<string, { spotify?: string; apple?: string }>
     spotify: 'https://open.spotify.com/episode/3fXA2LcEMmaeMnSyV8FvfP',
     apple: 'https://podcasts.apple.com/us/podcast/willie-litvack-on-building-and-investing-at-press-on/id6815350094?i=1000800116277',
   },
+  islpUulylHQ: {
+    spotify: 'https://open.spotify.com/episode/1bN6iqSc7QLVhKWvlTXCgH',
+    apple: 'https://podcasts.apple.com/us/podcast/the-aeo-playbook-with-jake-makler-first-press-ep-05/id6815350094?i=1000800816516',
+  },
 };

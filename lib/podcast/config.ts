@@ -17,7 +17,7 @@ export const PODCAST = {
   // 'youtube' = use each video's YouTube thumbnail (title card); 'branded' = generated number tiles
   tileMode: 'youtube' as 'youtube' | 'branded',
   // Pin a specific episode as the hub's featured episode (YouTube videoId). '' = newest episode.
-  featuredVideoId: 'a7iTuJGYkQA',
+  featuredVideoId: 'islpUulylHQ',
   pitchEmail: 'getintouch@presson.vc',
   topics: TOPICS,
   episodeMinSeconds: 180,
