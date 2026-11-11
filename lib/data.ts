@@ -317,6 +317,7 @@ export function pressSortKey(item: PressItem): number {
 }
 
 export const FALLBACK_PRESS_ITEMS: PressItem[] = [
+  { pub: 'TechCrunch', date: 'Nov 2026', dateISO: '2026-11-11', title: 'Siri co-founder backs Helix for its voice ID tech', company: 'Helix.ID', url: 'https://techcrunch.com/2026/11/11/siri-co-founder-backs-helix-for-its-voice-id-tech/' },
   { pub: 'Business Wire', date: 'Oct 2026', dateISO: '2026-10-29', title: '10Beauty Acquires Nimble, Cementing Its Position as the Largest Player in Intelligent Beauty', company: '10Beauty', url: 'https://www.businesswire.com/news/home/20261029265076/en/10Beauty-Acquires-Nimble-Cementing-Its-Position-as-the-Largest-Player-in-Intelligent-Beauty' },
   { pub: 'Fitt Insider', date: 'Oct 2026', dateISO: '2026-10-21', title: "Cofertility's Frozen Egg Donation Program Joins Progyny Network", company: 'Cofertility', url: 'https://insider.fitt.co/press-release/cofertilitys-frozen-egg-donation-program-joins-progyny-network-expanding-access-to-egg-donation-through-employer-sponsored-fertility-benefits/' },
   { pub: 'Authority Magazine', date: 'Oct 2026', dateISO: '2026-10-01', title: 'The Future Is Now: Mike Greene of SKYLARK', company: 'Skylark', url: 'https://medium.com/authority-magazine/the-future-is-now-mike-greene-of-skylark-on-how-their-technological-innovations-will-shake-up-the-a7fbf898298c' },
