@@ -79,6 +79,18 @@ export const COMPANIES: Company[] = [
     featured: true,
   },
   {
+    name: 'Mlem', slug: slugify('Mlem'), cat: 'health', logo: 'mlem.png',
+    logoUrl: '/company-logos/mlem.png',
+    tag: 'Real-Food Toppers for Picky Dogs',
+    desc: 'Pet nutrition brand whose first product, WAG-U, is a single-ingredient, grass-finished beef tallow topper in a propellant-free spray can. A few seconds over kibble gets picky dogs to finish the bowl, with no change of food and no refrigeration.',
+    founders: [
+      { name: 'Josh Israel', url: 'https://www.linkedin.com/in/joshisrael/' },
+    ],
+    website: 'https://mlempets.com', stage: 'Pre-Seed',
+    why: 'Pet owners now shop for their dogs the way they shop for themselves: short ingredient lists and real food. Mlem pairs a hard-to-make spray format with the Pack of Directors, a group of dog creators who own equity in the brand instead of taking sponsorship fees, and a repeat founder who runs a lean, AI-leveraged operation.',
+    featured: false,
+  },
+  {
     name: 'Rhythm Science', slug: slugify('Rhythm Science'), cat: 'health', logo: 'rhythmscience.png',
     logoUrl: '/company-logos/rhythmscience.png',
     tag: 'AI Cardiac Care Platform',
