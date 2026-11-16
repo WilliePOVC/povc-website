@@ -22,6 +22,7 @@ interface NotionPage {
     Headline?: { title?: Array<{ plain_text: string }> };
     URL?: { url?: string };
     'Publication Display Name'?: { rich_text?: Array<{ plain_text: string }> };
+    Publication?: { select?: { name: string } | null };
     'Company Display Name'?: { rich_text?: Array<{ plain_text: string }> };
     'Date Published'?: { date?: { start: string } };
   };
@@ -76,7 +77,8 @@ export async function fetchPressItems(): Promise<PressItem[]> {
         const p = page.properties;
         const headline = p.Headline?.title?.[0]?.plain_text ?? '';
         const url = p.URL?.url ?? '';
-        const pub = p['Publication Display Name']?.rich_text?.[0]?.plain_text ?? '';
+        const pubSel = p.Publication?.select?.name;
+        const pub = p['Publication Display Name']?.rich_text?.[0]?.plain_text || (pubSel && pubSel !== 'Other' ? pubSel : '');
         const company = p['Company Display Name']?.rich_text?.[0]?.plain_text ?? '';
         const dateStr = p['Date Published']?.date?.start ?? '';
 
