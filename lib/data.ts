@@ -317,10 +317,11 @@ export function pressSortKey(item: PressItem): number {
 }
 
 // Featured module at the top of /press (shown on "All coverage" and "Press On Ventures"). null hides it.
-export const PRESS_SPOTLIGHT: { pub: string; author: string; date: string; title: string; excerpt: string; url: string } | null = {
+export const PRESS_SPOTLIGHT: { pub: string; author: string; date: string; title: string; excerpt: string; url: string; img?: string } | null = {
   pub: 'Forbes', author: 'Andrew Watman', date: 'Nov 16, 2026',
   title: 'SquadUP Cofounder Launches New $15 Million AI-Centric Consumer Venture Fund, Press On',
-  excerpt: 'After exiting his first company, Willie Litvack enters the venture world to fund the next great consumer brands.',
+  excerpt: 'Press On Ventures has officially come out of stealth after raising an oversubscribed $15 million fund. Founded by Willie Litvack and Sean Tolkin, the consumer venture fund invests in consumer technology and products that utilize AI.',
+  img: '/press/forbes-povc-founders.jpg',
   url: 'https://www.forbes.com/sites/andrewwatman/2026/11/16/squadup-cofounder-launches-new-15-million-ai-centric-consumer-venture-fund-press-on/',
 };
 

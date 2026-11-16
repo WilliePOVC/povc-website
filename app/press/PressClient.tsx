@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { PressItem, PRESS_SPOTLIGHT } from '@/lib/data';
 import PowerMark from '@/components/ui/PowerMark';
+import { assetPath } from '@/lib/basepath';
 import blog from '../blog/blog.module.css';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
 import styles from './press.module.css';
@@ -45,7 +46,12 @@ export default function PressClient({ pressItems, featuredPubs }: Props) {
                     </div>
                   </div>
                   <div className={blog.featSide}>
-                    <span className={blog.glyph}><PowerMark /></span>
+                    {PRESS_SPOTLIGHT.img ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={assetPath(PRESS_SPOTLIGHT.img)} alt="Willie Litvack and Sean Tolkin" className={blog.featBgImg} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <span className={blog.glyph}><PowerMark /></span>
+                )}
                   </div>
                 </a>
               )}
