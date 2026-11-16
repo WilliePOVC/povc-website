@@ -41,6 +41,14 @@ export default function Footer() {
                 X / Twitter
               </a>
               <a
+                href="https://www.instagram.com/pressonventures"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.colLink}
+              >
+                Instagram
+              </a>
+              <a
                 href="https://www.linkedin.com/company/pressonvc/"
                 target="_blank"
                 rel="noopener noreferrer"
