@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { PressItem } from '@/lib/data';
+import { PressItem, PRESS_SPOTLIGHT } from '@/lib/data';
+import PowerMark from '@/components/ui/PowerMark';
+import blog from '../blog/blog.module.css';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
 import styles from './press.module.css';
 
@@ -41,6 +43,28 @@ export default function PressClient({ pressItems, featuredPubs }: Props) {
           <h2 className="sec-title reveal" style={{ marginBottom: 36 }}>
             Selected press.
           </h2>
+
+          {PRESS_SPOTLIGHT && (activeCo === 'all' || activeCo === 'Press On Ventures') && (
+            <a href={PRESS_SPOTLIGHT.url} target="_blank" rel="noopener noreferrer" className={blog.featured} style={{ marginBottom: 36 }}>
+              <div className={blog.featMain}>
+                <div className={blog.blFlag}>
+                  <span className={blog.blFlagDot} />
+                  Featured &middot; Press On Ventures
+                </div>
+                <h2 className={blog.featTitle}>{PRESS_SPOTLIGHT.title}</h2>
+                <p className={blog.featExcerpt}>{PRESS_SPOTLIGHT.excerpt}</p>
+                <div className={blog.featFoot}>
+                  <div className={blog.blMeta}>
+                    <b>{PRESS_SPOTLIGHT.pub}</b> &middot; {PRESS_SPOTLIGHT.author} &middot; {PRESS_SPOTLIGHT.date}
+                  </div>
+                  <span className="btn-ghost">Read on {PRESS_SPOTLIGHT.pub} <ArrowUpRight /></span>
+                </div>
+              </div>
+              <div className={blog.featSide}>
+                <span className={blog.glyph}><PowerMark /></span>
+              </div>
+            </a>
+          )}
 
           <div className={`${styles.filters} reveal`}>
             <button
