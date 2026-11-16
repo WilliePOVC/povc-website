@@ -33,7 +33,7 @@ export default function Footer() {
                 getintouch@presson.vc
               </a>
               <a
-                href="https://x.com/pressonvc"
+                href="https://x.com/pressonventures"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.colLink}
