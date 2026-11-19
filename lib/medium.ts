@@ -25,6 +25,7 @@ const CAT_OVERRIDES: Record<string, string> = {
 
 // Company logo map keyed by URL slug fragment
 const LOGO_MAP: Record<string, string> = {
+  'why-were-backing-mlem': '/company-logos/mlem.png',
   'why-were-backing-helix': '/company-logos/helix.png',
   'why-were-backing-vuelo': '/company-logos/vuelo.png',
   'why-were-backing-gato': '/company-logos/gato.svg',
