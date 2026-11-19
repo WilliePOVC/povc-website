@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { COMPANIES, getCompany, getAdjacentCompanies, CAT_LABELS, FALLBACK_PRESS_ITEMS } from '@/lib/data';
+import { COMPANIES, getCompany, getAdjacentCompanies, CAT_LABELS, FALLBACK_PRESS_ITEMS, FALLBACK_BLOG } from '@/lib/data';
 import { assetPath } from '@/lib/basepath';
 import ArrowUpRight from '@/components/ui/ArrowUpRight';
 import ArrowRight from '@/components/ui/ArrowRight';
@@ -35,6 +35,8 @@ export default async function CompanyPage({ params }: Props) {
   const { prev, next } = getAdjacentCompanies(slug);
   const mono = company.name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase();
   const pressItems = FALLBACK_PRESS_ITEMS.filter((p) => p.company === company.name);
+  const keys = [company.slug, company.slug.split('-')[0]];
+  const blogPosts = FALLBACK_BLOG.filter((b) => keys.some((k) => b.url.includes(`why-were-backing-${k}`)));
 
   return (
     <>
@@ -130,6 +132,29 @@ export default async function CompanyPage({ params }: Props) {
           </aside>
         </div>
       </section>
+
+      {blogPosts.length > 0 && (
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <div className="sec-eyebrow reveal">From our blog</div>
+            <h2 className={`sec-title reveal`} style={{ marginBottom: 36 }}>
+              Related posts
+            </h2>
+            <div className={`${styles.coPress} reveal`}>
+              {blogPosts.map((b) => (
+                <a key={b.url} href={b.url} target="_blank" rel="noopener noreferrer" className={styles.prItem}>
+                  <div>
+                    <div className={styles.prPub}>Medium</div>
+                    <div className={styles.prDate}>{b.date}</div>
+                  </div>
+                  <div className={styles.prTitle}>{b.title}</div>
+                  <span className={styles.prGo}><ArrowUpRight /></span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {pressItems.length > 0 && (
         <section className="section" style={{ paddingTop: 0 }}>
